@@ -20,6 +20,7 @@ const worksCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: z.string(),
+    subtitle: z.string().optional(), // e.g. "BRUTAL. Gallery - Cape Town"
     year: z.number().optional(),
     description: z.string().optional(),
     coverImage: z.string(),

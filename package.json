@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@vercel/blob": "^2.0.0",
     "astro": "^5.16.11",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "yaml": "^2.8.2"
   }
 }

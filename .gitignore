@@ -27,3 +27,5 @@ pnpm-debug.log*
 
 # original images for import (not tracked)
 importing-images/
+.vercel
+.env*.local
