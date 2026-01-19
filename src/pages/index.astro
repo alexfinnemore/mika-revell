@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageCard from '../components/ImageCard.astro';
+import { getEntry } from 'astro:content';
+
+// Get featured images from content collection
+const featured = await getEntry('homepage', 'featured');
+const images = featured?.data?.images || [];
+---
+
+<BaseLayout title="Mika Revell - Fine Art & Murals">
+  <section class="space-y-4 sm:space-y-6 lg:space-y-8">
+    {images.map((item) => {
+      // Build the href - will link to work page with anchor to specific artwork
+      const href = item.workSlug
+        ? `/work/${item.workSlug}${item.artworkId ? `#${item.artworkId}` : ''}`
+        : undefined;
+
+      return (
+        <ImageCard
+          image={item.image}
+          alt={item.alt || 'Artwork by Mika Revell'}
+          href={href}
+        />
+      );
+    })}
+  </section>
+
+  {images.length === 0 && (
+    <div class="text-center py-20 text-text-muted">
+      <p>No featured artwork yet.</p>
+    </div>
+  )}
+</BaseLayout>

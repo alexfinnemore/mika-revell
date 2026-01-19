@@ -1,0 +1,34 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  class: className = ''
+} = Astro.props;
+
+const baseStyles = 'inline-block px-6 py-3 text-sm font-normal tracking-wide uppercase transition-colors duration-200';
+
+const variantStyles = {
+  primary: 'bg-accent text-white hover:bg-accent-hover',
+  secondary: 'bg-transparent border border-accent text-accent hover:bg-accent hover:text-white'
+};
+
+const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`.trim();
+---
+
+{href ? (
+  <a href={href} class={combinedStyles}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={combinedStyles}>
+    <slot />
+  </button>
+)}

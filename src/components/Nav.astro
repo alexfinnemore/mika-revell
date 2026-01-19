@@ -1,0 +1,165 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/work', label: 'Work' },
+  { href: '/contact', label: 'Contact' },
+];
+
+function isActive(href: string, current: string): boolean {
+  if (href === '/') return current === '/';
+  return current.startsWith(href);
+}
+---
+
+<!-- Mobile Header -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background px-4 py-4 flex items-center justify-between border-b border-surface">
+  <a href="/" class="nav-text text-sm font-semibold tracking-wider">
+    Mika Revell
+  </a>
+  <button
+    id="mobile-menu-btn"
+    class="p-2 -mr-2 hover:text-accent transition-colors"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="lg:hidden fixed inset-0 bg-black/50 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<!-- Mobile Slide-in Menu -->
+<nav
+  id="mobile-menu"
+  class="lg:hidden fixed top-0 left-0 h-full w-64 bg-background z-50 transform -translate-x-full transition-transform duration-300 ease-out"
+>
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-12">
+      <a href="/" class="nav-text text-sm font-semibold tracking-wider">
+        Mika Revell
+      </a>
+      <button
+        id="mobile-menu-close"
+        class="p-2 -mr-2 hover:text-accent transition-colors"
+        aria-label="Close menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <ul class="space-y-6">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'nav-text text-sm block transition-colors',
+              isActive(item.href, currentPath) ? 'text-accent' : 'hover:text-accent'
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Social Link -->
+    <div class="mt-12 pt-6 border-t border-surface">
+      <a
+        href="https://www.instagram.com/littlepinkpills/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-text text-xs text-text-muted hover:text-accent transition-colors"
+      >
+        Instagram
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Desktop Sidebar -->
+<nav class="hidden lg:block fixed top-0 left-0 h-full w-[180px] bg-background z-40 border-r border-surface">
+  <div class="p-6 h-full flex flex-col">
+    <a href="/" class="nav-text text-sm font-semibold tracking-wider mb-12">
+      Mika Revell
+    </a>
+
+    <ul class="space-y-4 flex-1">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'nav-text text-sm block transition-colors',
+              isActive(item.href, currentPath) ? 'text-accent' : 'hover:text-accent'
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Social Link at bottom -->
+    <div class="pt-6 border-t border-surface">
+      <a
+        href="https://www.instagram.com/littlepinkpills/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-text text-xs text-text-muted hover:text-accent transition-colors"
+      >
+        Instagram
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer for mobile header -->
+<div class="lg:hidden h-14"></div>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('-translate-x-full');
+    mobileMenuOverlay?.classList.remove('opacity-0', 'pointer-events-none');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add('-translate-x-full');
+    mobileMenuOverlay?.classList.add('opacity-0', 'pointer-events-none');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuBtn?.addEventListener('click', openMenu);
+  mobileMenuClose?.addEventListener('click', closeMenu);
+  mobileMenuOverlay?.addEventListener('click', closeMenu);
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Close menu when clicking a nav link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
