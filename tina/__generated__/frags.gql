@@ -1,0 +1,32 @@
+fragment ArtworksParts on Artworks {
+  __typename
+  title
+  image
+  medium
+  dimensions
+  year
+  description
+}
+
+fragment WorksParts on Works {
+  __typename
+  title
+  slug
+  subtitle
+  year
+  description
+  coverImage
+  artworks
+  order
+}
+
+fragment HomepageParts on Homepage {
+  __typename
+  images {
+    __typename
+    image
+    alt
+    workSlug
+    artworkId
+  }
+}

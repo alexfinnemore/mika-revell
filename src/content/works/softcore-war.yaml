@@ -27,6 +27,7 @@ description: >
 
   What alternative worlds could we create? What is holding us back?
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/softcore-war--artist-with-pink-sculptures.jpeg
+order: 2
 artworks:
   - artist-with-pink-sculptures
   - artist-with-spine-sculpture

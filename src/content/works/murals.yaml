@@ -5,6 +5,7 @@ description: >
   featured in LA's SoFi Stadium, DTLA's Museum of Architecture and Design, the
   Angels Stadium of Anaheim, Los Angeles, and for the City of South Milwaukee.
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/murals--agave-fields-forever-don-julio-angels-stadium.jpg
+order: 6
 artworks:
   - agave-fields-forever-don-julio-angels-stadium
   - angelsstadium-10-x-75-don-julio-20-000

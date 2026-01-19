@@ -14,7 +14,7 @@ A static portfolio website for fine artist Mika Revell, built with Astro, Tailwi
 | Styling | Tailwind CSS v4 | Utility-first CSS with custom theme |
 | Content | YAML files in `src/content/` | Type-safe content collections |
 | Images | Vercel Blob | CDN-delivered image storage |
-| CMS | Decap CMS (planned) | Visual editor at `/admin` |
+| CMS | TinaCMS | Visual editor at `/admin` |
 | Hosting | Vercel | Auto-deploy from GitHub |
 
 ---
@@ -47,7 +47,9 @@ mika-revell/
 │   └── styles/
 │       └── global.css          # Tailwind theme + base styles
 ├── public/
-│   └── admin/                  # Decap CMS config (future)
+│   └── admin/                  # TinaCMS admin interface (auto-generated)
+├── tina/
+│   └── config.ts               # TinaCMS collections configuration
 ├── importing-images/           # Local images for upload (gitignored)
 └── .env.local                  # Environment variables (gitignored)
 ```
@@ -203,60 +205,68 @@ e.g., softcore-war-hanging-piece.jpg
 
 ---
 
-## Decap CMS (Visual Editor)
+## TinaCMS (Visual Editor)
 
-**Status**: Planned for Phase 5
+TinaCMS provides a visual editor at `/admin` for non-technical content updates.
 
-Decap CMS provides a visual editor at `/admin` for non-technical content updates.
+### Accessing the CMS
 
-### Setup Requirements
+1. Go to `https://mikarevell.com/admin` (or `localhost:4321/admin` in dev)
+2. Log in with your Tina Cloud account
+3. Edit content visually - changes commit directly to GitHub
 
-1. **GitHub OAuth App** (for authentication):
-   - Go to GitHub → Settings → Developer settings → OAuth Apps → New
-   - Application name: `Mika Revell CMS`
-   - Homepage URL: `https://mikarevell.com`
-   - Authorization callback URL: `https://api.netlify.com/auth/done`
-   - Save Client ID and Client Secret
+### Adding a New Artwork
 
-2. **Netlify Identity** or **External OAuth Provider**:
-   - Decap CMS needs an OAuth backend for GitHub auth
-   - Options: Netlify Identity (free), or self-hosted oauth server
-   - See: https://decapcms.org/docs/external-oauth-clients/
+1. In Tina: **Artworks** → **Create New**
+2. Enter ID (lowercase with hyphens, e.g., `my-new-artwork`)
+3. Enter title
+4. Paste Vercel Blob URL in image field (see Image Management section)
+5. Fill optional fields: medium, dimensions, year, description
+6. Save
 
-3. **CMS Config** (`public/admin/config.yml`):
-   ```yaml
-   backend:
-     name: github
-     repo: alexfinnemore/mika-revell
-     branch: master
+### Creating a New Work Series
 
-   media_folder: "public/uploads"
-   public_folder: "/uploads"
+1. In Tina: **Work Series** → **Create New**
+2. Fill in: title, slug (URL path), subtitle, year
+3. Add description (supports multi-line text)
+4. Paste cover image URL
+5. Add artwork IDs to the artworks list
+6. Set display order number (lower = appears first on /work page)
+7. Save
 
-   collections:
-     - name: "artworks"
-       label: "Artworks"
-       folder: "src/content/artworks"
-       extension: "yaml"
-       format: "yaml"
-       create: true
-       fields:
-         - { label: "ID", name: "id", widget: "string" }
-         - { label: "Title", name: "title", widget: "string" }
-         - { label: "Image URL", name: "image", widget: "string" }
-         - { label: "Medium", name: "medium", widget: "string", required: false }
-         - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
-         - { label: "Year", name: "year", widget: "number", required: false }
-         - { label: "Description", name: "description", widget: "text", required: false }
-   ```
+### Editing Homepage Featured Images
 
-### CRUD via CMS
+1. In Tina: **Homepage** → **featured**
+2. Add/remove/reorder images in the list
+3. Each image needs:
+   - **Image URL**: Vercel Blob URL
+   - **Alt Text**: Accessibility description
+   - **Link to Work Series**: Slug of work series (e.g., `softcore-war`)
+   - **Artwork ID**: Specific artwork to scroll to
+4. Save
 
-Once configured:
-1. Go to `mikarevell.com/admin`
-2. Log in with GitHub
-3. Use visual editor to create/edit/delete content
-4. Changes commit to GitHub → auto-deploy via Vercel
+### Changing Work Series Order
+
+1. In Tina: **Work Series** → select a series
+2. Change the **Display Order** field number
+3. Lower numbers appear first on the `/work` page
+4. Save
+
+### Inviting Team Members
+
+1. Go to [tina.io](https://tina.io) → Your Project → Team
+2. Invite collaborators via email
+3. They create a Tina account (no GitHub access needed)
+4. They can then edit content at `/admin`
+
+### Environment Variables
+
+Required in Vercel dashboard:
+
+| Variable | Purpose |
+|----------|---------|
+| `TINA_CLIENT_ID` | From Tina Cloud project settings |
+| `TINA_TOKEN` | From Tina Cloud project settings |
 
 ---
 
@@ -306,17 +316,21 @@ Vercel auto-deploys on push to `master`:
 | Variable | Purpose |
 |----------|---------|
 | `BLOB_READ_WRITE_TOKEN` | Auto-added when Blob storage created |
+| `TINA_CLIENT_ID` | TinaCMS authentication |
+| `TINA_TOKEN` | TinaCMS API token |
 
 ---
 
-## Future Phases
+## Completed Features
 
-- [x] Phase 1: Homepage with vertical image stack
-- [ ] Phase 2: Work pages (series listing + individual series)
-- [ ] Phase 3: About page
-- [ ] Phase 4: Contact page
-- [ ] Phase 5: Decap CMS integration
-- [ ] Phase 6: Migrate images to Vercel Blob
+- [x] Homepage with vertical image stack
+- [x] Work pages (series listing + individual series)
+- [x] About page
+- [x] Contact page
+- [x] TinaCMS integration
+- [x] Images hosted on Vercel Blob
+- [x] Homepage click-through to artworks
+- [x] Configurable series display order
 
 ---
 

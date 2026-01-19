@@ -41,7 +41,7 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
 
   <section class="space-y-8 lg:space-y-12">
     {artworks.map((artwork) => (
-      <article id={artwork?.data.id} class="scroll-mt-20">
+      <article id={artwork?.id} class="scroll-mt-20">
         <div class="bg-surface">
           <img
             src={artwork?.data.image}

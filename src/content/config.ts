@@ -1,10 +1,12 @@
 import { defineCollection, z } from 'astro:content';
 
 // Schema for individual artworks
+// Note: The artwork ID is derived from the filename (e.g., my-artwork.yaml -> id: my-artwork)
+// The 'id' field in YAML is optional and kept for backwards compatibility
 const artworksCollection = defineCollection({
   type: 'data',
   schema: z.object({
-    id: z.string(),
+    id: z.string().optional(), // Optional - filename is used as primary identifier
     title: z.string(),
     medium: z.string().optional(),
     dimensions: z.string().optional(),
@@ -25,6 +27,7 @@ const worksCollection = defineCollection({
     description: z.string().optional(),
     coverImage: z.string(),
     artworks: z.array(z.string()), // Array of artwork IDs
+    order: z.number().optional(), // Display order on /work page (lower = first)
   }),
 });
 
