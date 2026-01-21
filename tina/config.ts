@@ -210,6 +210,11 @@ export default defineConfig({
             name: "images",
             label: "Featured Images",
             list: true,
+            ui: {
+              itemProps: (item: { alt?: string; artworkId?: string; image?: string }) => ({
+                label: item?.alt || item?.artworkId || (item?.image ? item.image.split('/').pop()?.split('.')[0] : "New Image"),
+              }),
+            },
             fields: [
               {
                 type: "string",
