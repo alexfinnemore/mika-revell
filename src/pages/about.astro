@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
+import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../lib/image';
 
 const about = await getEntry('about', 'main');
 const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, soloExhibitions, publicArtworks } = about.data;
@@ -15,9 +16,13 @@ const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, so
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
       <div>
         <img
-          src={heroImage}
+          src={getOptimizedImageUrl({ src: heroImage, width: 1024 })}
+          srcset={generateSrcset(heroImage, IMAGE_WIDTHS.card)}
+          sizes="(max-width: 768px) 100vw, 50vw"
           alt={heroImageAlt || "Artist portrait"}
           class="w-full h-auto object-cover"
+          loading="eager"
+          decoding="async"
         />
       </div>
       <div class="text-text-muted leading-relaxed whitespace-pre-line">
@@ -85,9 +90,13 @@ const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, so
       {secondImage && (
         <div>
           <img
-            src={secondImage}
+            src={getOptimizedImageUrl({ src: secondImage, width: 1024 })}
+            srcset={generateSrcset(secondImage, IMAGE_WIDTHS.card)}
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt={secondImageAlt || "Artist image"}
             class="w-full h-auto object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       )}

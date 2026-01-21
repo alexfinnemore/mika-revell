@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ImageCard from '../../components/ImageCard.astro';
 import { getCollection } from 'astro:content';
+import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../../lib/image';
 
 // Get all work series and sort by order
 const allWorks = await getCollection('works');
@@ -17,10 +18,13 @@ const works = allWorks.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 9
         <a href={`/work/${work.data.slug}`} class="block">
           <div class="overflow-hidden bg-surface mb-4">
             <img
-              src={work.data.coverImage}
+              src={getOptimizedImageUrl({ src: work.data.coverImage, width: 1024 })}
+              srcset={generateSrcset(work.data.coverImage, IMAGE_WIDTHS.card)}
+              sizes="(max-width: 640px) 100vw, 50vw"
               alt={work.data.title}
               class="w-full aspect-[4/3] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <h2 class="text-lg font-normal group-hover:text-accent transition-colors">

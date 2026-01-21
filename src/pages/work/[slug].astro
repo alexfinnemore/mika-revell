@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
+import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../../lib/image';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
@@ -47,10 +48,13 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
       <article id={artwork?.id} class="scroll-mt-20">
         <div class="bg-surface">
           <img
-            src={artwork?.data.image}
+            src={getOptimizedImageUrl({ src: artwork?.data.image, width: 1024 })}
+            srcset={generateSrcset(artwork?.data.image, IMAGE_WIDTHS.full)}
+            sizes="(max-width: 672px) 100vw, 672px"
             alt={artwork?.data.title}
             class="w-full"
             loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="mt-4 space-y-1">

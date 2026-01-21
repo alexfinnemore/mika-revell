@@ -1,4 +1,6 @@
 ---
+import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../lib/image';
+
 interface Props {
   image: string;
   alt: string;
@@ -15,8 +17,10 @@ const {
   aspectRatio = 'auto'
 } = Astro.props;
 
-const isExternal = image.startsWith('http');
-const imgSrc = isExternal ? image : image;
+// Generate optimized image URLs
+const optimizedSrc = getOptimizedImageUrl({ src: image, width: 1024 });
+const srcset = generateSrcset(image, IMAGE_WIDTHS.card);
+const sizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
 ---
 
 <article class="group relative">
@@ -27,7 +31,9 @@ const imgSrc = isExternal ? image : image;
         style={aspectRatio !== 'auto' ? `aspect-ratio: ${aspectRatio}` : ''}
       >
         <img
-          src={imgSrc}
+          src={optimizedSrc}
+          srcset={srcset}
+          sizes={sizes}
           alt={alt}
           class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
           loading="lazy"
@@ -47,7 +53,9 @@ const imgSrc = isExternal ? image : image;
         style={aspectRatio !== 'auto' ? `aspect-ratio: ${aspectRatio}` : ''}
       >
         <img
-          src={imgSrc}
+          src={optimizedSrc}
+          srcset={srcset}
+          sizes={sizes}
           alt={alt}
           class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
           loading="lazy"
