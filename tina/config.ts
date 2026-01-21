@@ -54,15 +54,14 @@ export default defineConfig({
   token: process.env.TINA_TOKEN,
 
   // Search configuration - requires TINA_SEARCH_TOKEN from Tina Cloud dashboard
-  // Only enable search if the token is configured
-  ...(process.env.TINA_SEARCH_TOKEN && {
-    search: {
-      tina: {
-        indexerToken: process.env.TINA_SEARCH_TOKEN,
-        stopwordLanguages: ["eng"],
-      },
+  search: {
+    tina: {
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
+      stopwordLanguages: ["eng"],
     },
-  }),
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 200,
+  },
 
   build: {
     outputFolder: "admin",
