@@ -1,7 +1,7 @@
 title: Softcore War
 slug: softcore-war
-year: 2023
 subtitle: BRUTAL. Gallery - Cape Town
+year: 2023
 description: >
   A large, inert rock sits beneath a giant, pink balloon. It sees itself
   reflected in the polished surface, staring back at a rose-colored world. We
@@ -26,9 +26,10 @@ description: >
 
 
   What alternative worlds could we create? What is holding us back?
-coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/softcore-war--artist-with-pink-sculptures.jpeg
-order: 2
+coverImage: >-
+  https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/softcore-war--artist-with-pink-sculptures.jpeg
 artworks:
+  - softcore-war-installation
   - artist-with-pink-sculptures
   - artist-with-spine-sculpture
   - consume-us
@@ -50,6 +51,6 @@ artworks:
   - softcore-war-bones-close-up
   - softcore-war-bones-wide-shot
   - softcore-war-gallery-text
-  - softcore-war-installation
   - the-dreams-in-which-i-m-dying
   - under-the-skin
+order: 2
