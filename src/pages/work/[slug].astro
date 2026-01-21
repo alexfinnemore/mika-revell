@@ -26,11 +26,12 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
 <BaseLayout title={`${work.data.title} - Mika Revell`}>
   <header class="mb-12 max-w-2xl">
     <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{work.data.title}</h1>
-    {work.data.subtitle && (
-      <p class="text-text-muted italic">{work.data.subtitle}</p>
-    )}
-    {work.data.year && (
-      <p class="text-text-muted">{work.data.year}</p>
+    {(work.data.subtitle || work.data.year) && (
+      <p class="text-text-muted">
+        {work.data.subtitle && <span class="italic">{work.data.subtitle}</span>}
+        {work.data.subtitle && work.data.year && <span> | </span>}
+        {work.data.year}
+      </p>
     )}
     {work.data.description && (
       <p class="mt-4 text-text-muted">{work.data.description}</p>
@@ -40,7 +41,7 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
   <section class="space-y-8 lg:space-y-12 max-w-2xl">
     {artworks.map((artwork) => (
       <article id={artwork?.id} class="scroll-mt-20">
-        <div class="bg-surface">
+        <div class="relative group artwork-container bg-surface">
           <img
             src={getOptimizedImageUrl({ src: artwork?.data.image, width: 1024 })}
             srcset={generateSrcset(artwork?.data.image, IMAGE_WIDTHS.full)}
@@ -50,20 +51,21 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
             loading="lazy"
             decoding="async"
           />
-        </div>
-        <div class="mt-4 space-y-1">
-          <h2 class="text-lg">{artwork?.data.title}</h2>
-          {artwork?.data.medium && (
-            <p class="text-sm text-text-muted">{artwork?.data.medium}</p>
-          )}
-          {artwork?.data.dimensions && (
-            <p class="text-sm text-text-muted">{artwork?.data.dimensions}</p>
-          )}
-          {artwork?.data.year && (
-            <p class="text-sm text-text-muted">{artwork?.data.year}</p>
-          )}
-          {artwork?.data.description && (
-            <p class="text-sm text-text-muted mt-2">{artwork?.data.description}</p>
+          {(artwork?.data.title || artwork?.data.year || artwork?.data.medium || artwork?.data.description) && (
+            <div class="artwork-overlay absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              {artwork?.data.title && (
+                <h2 class="text-lg">{artwork?.data.title}</h2>
+              )}
+              {artwork?.data.year && (
+                <p class="text-sm opacity-80">{artwork?.data.year}</p>
+              )}
+              {artwork?.data.medium && (
+                <p class="text-sm opacity-80">{artwork?.data.medium}</p>
+              )}
+              {artwork?.data.description && (
+                <p class="text-sm opacity-80 mt-2">{artwork?.data.description}</p>
+              )}
+            </div>
           )}
         </div>
       </article>
@@ -76,3 +78,42 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
     </div>
   )}
 </BaseLayout>
+
+<script>
+  // Mobile tap support for artwork overlays
+  document.querySelectorAll('.artwork-container').forEach((container) => {
+    container.addEventListener('click', (e) => {
+      // Only handle taps on touch devices
+      if (!('ontouchstart' in window)) return;
+
+      const overlay = container.querySelector('.artwork-overlay');
+      if (!overlay) return;
+
+      // Toggle active state
+      const isActive = overlay.classList.contains('opacity-100');
+
+      // Hide all other overlays first
+      document.querySelectorAll('.artwork-overlay').forEach((o) => {
+        o.classList.remove('opacity-100');
+        o.classList.add('opacity-0');
+      });
+
+      // Toggle this overlay
+      if (!isActive) {
+        overlay.classList.remove('opacity-0');
+        overlay.classList.add('opacity-100');
+      }
+    });
+  });
+
+  // Hide overlay when tapping outside
+  document.addEventListener('click', (e) => {
+    if (!('ontouchstart' in window)) return;
+    if (!(e.target as Element).closest('.artwork-container')) {
+      document.querySelectorAll('.artwork-overlay').forEach((o) => {
+        o.classList.remove('opacity-100');
+        o.classList.add('opacity-0');
+      });
+    }
+  });
+</script>
