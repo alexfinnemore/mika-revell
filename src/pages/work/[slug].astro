@@ -24,15 +24,6 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
 ---
 
 <BaseLayout title={`${work.data.title} - Mika Revell`}>
-  <div class="mb-8">
-    <a
-      href="/work"
-      class="text-sm text-text-muted hover:text-accent transition-colors"
-    >
-      &larr; Back to Work
-    </a>
-  </div>
-
   <header class="mb-12 max-w-2xl">
     <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{work.data.title}</h1>
     {work.data.subtitle && (
