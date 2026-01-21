@@ -1,4 +1,4 @@
-title: Love Threats
+title: "Love Threats"
 slug: love-threats
 description: >
   Revell proposes an important paradox — a war of love. To shift the tides of
@@ -6,12 +6,10 @@ description: >
   micro-activism of guerrilla propaganda must become a tidal wave of tolerance —
   an empathetic revolution.
 
-
   This series highlights the hypernormalized state of unrest that has become a
   condition of contemporary life. Generations born into a global climate
   characterized by conflict, extraction, and extinction have been denied the
   simple romantic ideas — potential, hope, and distant futures.
-
 
   This series responds to this shift within post-modernity, from a rejection of
   art historical traditions to an all-out assault on colonialism, and
@@ -20,10 +18,17 @@ description: >
   divider of power, and a destroyer of intellectual agency. Revell's work pushes
   the viewer to question their beliefs about the hidden Big Other in their
   ideology.
-coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/love-threats--love-threat-1-0.jpeg
+coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_0cb1b9be4376408d8c9af2769625d723-mv2_d_2523_2523_s_4_.jpg
 order: 5
 artworks:
+  - artwork: src/content/artworks/seeds-of-solidarity
+  - artwork: src/content/artworks/alone
+  - artwork: src/content/artworks/atomic
+  - artwork: src/content/artworks/kumo-unkai
+  - artwork: src/content/artworks/westside
+  - artwork: src/content/artworks/opiate
+  - artwork: src/content/artworks/aftermath
+  - artwork: src/content/artworks/the-painters-sea
+  - artwork: src/content/artworks/shelter
   - artwork: src/content/artworks/love-threat-1-0
-  - artwork: src/content/artworks/china-doll
-  - artwork: src/content/artworks/china-doll-studio
-  - artwork: src/content/artworks/china-doll-whitewall
+  - artwork: src/content/artworks/saboteur

@@ -306,6 +306,7 @@ export type Works = Node & Document & {
   coverImage: Scalars['String']['output'];
   artworks?: Maybe<Array<Maybe<WorksArtworks>>>;
   order?: Maybe<Scalars['Float']['output']>;
+  hidden?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -319,6 +320,11 @@ export type WorksArtworksFilter = {
   artwork?: InputMaybe<WorksArtworksArtworkFilter>;
 };
 
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type WorksFilter = {
   title?: InputMaybe<StringFilter>;
   slug?: InputMaybe<StringFilter>;
@@ -328,6 +334,7 @@ export type WorksFilter = {
   coverImage?: InputMaybe<StringFilter>;
   artworks?: InputMaybe<WorksArtworksFilter>;
   order?: InputMaybe<NumberFilter>;
+  hidden?: InputMaybe<BooleanFilter>;
 };
 
 export type WorksConnectionEdges = {
@@ -651,6 +658,7 @@ export type WorksMutation = {
   coverImage?: InputMaybe<Scalars['String']['input']>;
   artworks?: InputMaybe<Array<InputMaybe<WorksArtworksMutation>>>;
   order?: InputMaybe<Scalars['Float']['input']>;
+  hidden?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type HomepageImagesMutation = {
@@ -706,7 +714,7 @@ export type ContactMutation = {
 
 export type ArtworksPartsFragment = { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null };
 
-export type WorksPartsFragment = { __typename: 'Works', title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null };
+export type WorksPartsFragment = { __typename: 'Works', title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, hidden?: boolean | null, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', images?: Array<{ __typename: 'HomepageImages', image: string, alt?: string | null, workSlug?: string | null, artworkId?: string | null } | null> | null };
 
@@ -738,7 +746,7 @@ export type WorksQueryVariables = Exact<{
 }>;
 
 
-export type WorksQuery = { __typename?: 'Query', works: { __typename: 'Works', id: string, title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type WorksQuery = { __typename?: 'Query', works: { __typename: 'Works', id: string, title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, hidden?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type WorksConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -750,7 +758,7 @@ export type WorksConnectionQueryVariables = Exact<{
 }>;
 
 
-export type WorksConnectionQuery = { __typename?: 'Query', worksConnection: { __typename?: 'WorksConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'WorksConnectionEdges', cursor: string, node?: { __typename: 'Works', id: string, title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null } | null> | null } };
+export type WorksConnectionQuery = { __typename?: 'Query', worksConnection: { __typename?: 'WorksConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'WorksConnectionEdges', cursor: string, node?: { __typename: 'Works', id: string, title: string, slug: string, subtitle?: string | null, year?: number | null, description?: string | null, coverImage: string, order?: number | null, hidden?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, artworks?: Array<{ __typename: 'WorksArtworks', artwork?: { __typename: 'Artworks', title: string, image: string, medium?: string | null, dimensions?: string | null, year?: number | null, description?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null } | null> | null } };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -856,6 +864,7 @@ export const WorksPartsFragmentDoc = gql`
     }
   }
   order
+  hidden
 }
     `;
 export const HomepagePartsFragmentDoc = gql`

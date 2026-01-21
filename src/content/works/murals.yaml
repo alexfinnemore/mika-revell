@@ -1,16 +1,6 @@
-title: Murals
+title: "Murals"
 slug: murals
-description: >
-  Mika is an experienced artistic and commercial muralist. Her work has been
-  featured in LA's SoFi Stadium, DTLA's Museum of Architecture and Design, the
-  Angels Stadium of Anaheim, Los Angeles, and for the City of South Milwaukee.
-coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/murals--agave-fields-forever-don-julio-angels-stadium.jpg
-order: 6
-artworks:
-  - artwork: src/content/artworks/agave-fields-forever-don-julio-angels-stadium
-  - artwork: src/content/artworks/angelsstadium-10-x-75-don-julio-20-000
-  - artwork: src/content/artworks/chinatown-night-a-d-museum
-  - artwork: src/content/artworks/keep-walking
-  - artwork: src/content/artworks/rooftop-birdofparadise-final
-  - artwork: src/content/artworks/south-milwaukee-mural
-  - artwork: src/content/artworks/superbowl-nightlights-sofi-stadium
+coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/murals--keep-walking.jpg
+order: 9
+hidden: true
+artworks: []

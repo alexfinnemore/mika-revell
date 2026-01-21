@@ -1,17 +1,15 @@
-title: Softcore War
+title: "Softcore War"
 slug: softcore-war
-subtitle: BRUTAL. Gallery - Cape Town
+subtitle: "BRUTAL. Gallery - Cape Town"
 year: 2023
 description: >
   A large, inert rock sits beneath a giant, pink balloon. It sees itself
   reflected in the polished surface, staring back at a rose-colored world. We
   see the natural world wrapped in fetishized commodities.
 
-
   Territorial, ideological, and environmental conflicts surround us, yet we are
   desensitized, entertained, and addicted. Softcore War examines this seemingly
   contradictory, but accepted reality.
-
 
   Using her signature pink as a panacea, Revell subverts symbols of violence
   with pacifism and levity. Mika employs satire and absurdity to expose how we
@@ -19,38 +17,22 @@ description: >
   celebration of destruction, while sculptures depicting rapid evolution hint at
   the effects of industry on the human body.
 
-
   Combining organic and manufactured materials, with symbols of violence and
   enjoyment, Revell exposes the ways we package and accept a brutal and
   competitive world.
 
-
   What alternative worlds could we create? What is holding us back?
-coverImage: >-
-  https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/softcore-war--artist-with-pink-sculptures.jpeg
-artworks:
-  - artwork: src/content/artworks/softcore-war-installation
-  - artwork: src/content/artworks/artist-with-pink-sculptures
-  - artwork: src/content/artworks/artist-with-spine-sculpture
-  - artwork: src/content/artworks/consume-us
-  - artwork: src/content/artworks/detailed-installation-view
-  - artwork: src/content/artworks/disarmed
-  - artwork: src/content/artworks/exhibition-documentation
-  - artwork: src/content/artworks/exhibition-opening
-  - artwork: src/content/artworks/exhibition-view
-  - artwork: src/content/artworks/gallery-installation
-  - artwork: src/content/artworks/hope-is-a-waking-dream
-  - artwork: src/content/artworks/installation-detail
-  - artwork: src/content/artworks/installation-detail-ii
-  - artwork: src/content/artworks/installation-detail-iii
-  - artwork: src/content/artworks/installation-view-bottles
-  - artwork: src/content/artworks/iron-lung
-  - artwork: src/content/artworks/pink-heart-with-pacemaker
-  - artwork: src/content/artworks/plant-close-up
-  - artwork: src/content/artworks/replicant
-  - artwork: src/content/artworks/softcore-war-bones-close-up
-  - artwork: src/content/artworks/softcore-war-bones-wide-shot
-  - artwork: src/content/artworks/softcore-war-gallery-text
-  - artwork: src/content/artworks/the-dreams-in-which-i-m-dying
-  - artwork: src/content/artworks/under-the-skin
+coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_4356f98f34f6478493e7d17e848bf1ac-mv2.jpeg
 order: 2
+artworks:
+  - artwork: src/content/artworks/the-dreams-in-which-im-dying
+  - artwork: src/content/artworks/replicant
+  - artwork: src/content/artworks/iron-lung
+  - artwork: src/content/artworks/under-the-skin
+  - artwork: src/content/artworks/hope-is-a-waking-dream
+  - artwork: src/content/artworks/disarmed
+  - artwork: src/content/artworks/consume-us
+  - artwork: src/content/artworks/softcore-war-installation-i
+  - artwork: src/content/artworks/softcore-war-installation-ii
+  - artwork: src/content/artworks/softcore-war-installation-iii
+  - artwork: src/content/artworks/softcore-war-detail

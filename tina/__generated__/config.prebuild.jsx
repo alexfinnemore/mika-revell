@@ -42,15 +42,17 @@ var config_default = defineConfig({
   clientId: process.env.TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
-  // Search configuration - requires TINA_SEARCH_TOKEN from Tina Cloud dashboard
-  search: {
-    tina: {
-      indexerToken: process.env.TINA_SEARCH_TOKEN,
-      stopwordLanguages: ["eng"]
-    },
-    indexBatchSize: 100,
-    maxSearchIndexFieldLength: 200
-  },
+  // Search configuration - only enabled if TINA_SEARCH_TOKEN is available
+  ...process.env.TINA_SEARCH_TOKEN ? {
+    search: {
+      tina: {
+        indexerToken: process.env.TINA_SEARCH_TOKEN,
+        stopwordLanguages: ["eng"]
+      },
+      indexBatchSize: 100,
+      maxSearchIndexFieldLength: 200
+    }
+  } : {},
   build: {
     outputFolder: "admin",
     publicFolder: "public"
@@ -176,6 +178,12 @@ var config_default = defineConfig({
             name: "order",
             label: "Display Order",
             description: "Lower numbers appear first"
+          },
+          {
+            type: "boolean",
+            name: "hidden",
+            label: "Hidden",
+            description: "Hide this series from the public site"
           }
         ]
       },

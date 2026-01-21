@@ -1,7 +1,7 @@
-title: Unnatural Disasters
+title: "Unnatural Disasters"
 slug: unnatural-disasters
+subtitle: "Los Angeles, USA"
 year: 2017
-subtitle: Los Angeles, USA
 description: >
   This series of paintings explores the use of imagery, images of destruction,
   and the mediation of global and environmental disasters through the media.
@@ -10,23 +10,17 @@ description: >
   pinks and purples, depicting a rose-colored lens through which these horrific
   events are distorted.
 
-
   From Hiroshima to the oil fields of Kuwait, each painting is a document of
   man's folly and Nature's fury. This series presents the viewer with a stark
   reality of the arrogance in the Anthropocene.
-coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/unnatural-disasters--fukushima.jpg
+coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_00a0bda5b0cc4b3b9690e9a76d0a5b16-mv2_d_1919_1919_s_2.jpg
 order: 4
 artworks:
+  - artwork: src/content/artworks/mushroom-cloud-cyan
+  - artwork: src/content/artworks/oil-spill
+  - artwork: src/content/artworks/oil-fields
+  - artwork: src/content/artworks/mushroom-cloud-pink
   - artwork: src/content/artworks/fukushima
-  - artwork: src/content/artworks/fukushima-laartshow
-  - artwork: src/content/artworks/gulf-spill
-  - artwork: src/content/artworks/hiroshima
-  - artwork: src/content/artworks/kawaii-neon
-  - artwork: src/content/artworks/kuwait
-  - artwork: src/content/artworks/kuwait-ig
-  - artwork: src/content/artworks/la-artshow
-  - artwork: src/content/artworks/revell-trio-black
-  - artwork: src/content/artworks/revell-trio-pink
-  - artwork: src/content/artworks/trio-1-teal
-  - artwork: src/content/artworks/trio-10-grey
-  - artwork: src/content/artworks/weapon-of-choice-gallery
+  - artwork: src/content/artworks/mushroom-cloud-green
+  - artwork: src/content/artworks/kowai
+  - artwork: src/content/artworks/kawaii

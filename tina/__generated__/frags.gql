@@ -43,6 +43,7 @@ fragment WorksParts on Works {
     }
   }
   order
+  hidden
 }
 
 fragment HomepageParts on Homepage {

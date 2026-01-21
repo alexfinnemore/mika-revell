@@ -163,6 +163,7 @@ type Works implements Node & Document {
   coverImage: String!
   artworks: [WorksArtworks]
   order: Float
+  hidden: Boolean
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -176,6 +177,11 @@ input WorksArtworksFilter {
   artwork: WorksArtworksArtworkFilter
 }
 
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
 input WorksFilter {
   title: StringFilter
   slug: StringFilter
@@ -185,6 +191,7 @@ input WorksFilter {
   coverImage: StringFilter
   artworks: WorksArtworksFilter
   order: NumberFilter
+  hidden: BooleanFilter
 }
 
 type WorksConnectionEdges {
@@ -399,6 +406,7 @@ input WorksMutation {
   coverImage: String
   artworks: [WorksArtworksMutation]
   order: Float
+  hidden: Boolean
 }
 
 input HomepageImagesMutation {

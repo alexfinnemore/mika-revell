@@ -4,9 +4,11 @@ import ImageCard from '../../components/ImageCard.astro';
 import { getCollection } from 'astro:content';
 import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../../lib/image';
 
-// Get all work series and sort by order
+// Get all work series, filter out hidden ones, and sort by order
 const allWorks = await getCollection('works');
-const works = allWorks.sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const works = allWorks
+  .filter(work => !work.data.hidden)
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 ---
 
 <BaseLayout title="Work - Mika Revell">

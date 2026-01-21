@@ -30,6 +30,7 @@ const worksCollection = defineCollection({
       artwork: z.string(), // Reference path like "src/content/artworks/artwork-id"
     })), // Array of artwork references
     order: z.number().optional(), // Display order on /work page (lower = first)
+    hidden: z.boolean().optional(), // Hide this series from the public site
   }),
 });
 

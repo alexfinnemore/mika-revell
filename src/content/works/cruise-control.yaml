@@ -1,38 +1,25 @@
-title: Cruise Control
+title: "Cruise Control"
 slug: cruise-control
-subtitle: E69 - Berlin
+subtitle: "E69 - Berlin"
 year: 2024
 description: >-
   Are we asleep at the wheel? Cruise Control presents a world where bodily
   autonomy, humanity, and technology are in constant flux. We ask ourselves, Who
   is in control?
 
-
-
   Are we just drifting inside the machine? Did we concede to automation over
   autonomy, compliance over choice, convenience over freedom? How can we escape
   these binary contradictions and traverse an alternate way?
 
-
-
   The exhibition included an audio-visual work that forced the viewer into a
   rapid, wall-sized, scrolling film of social media content and rapid audio.
   Creating a disorienting and unpleasant environment within the gallery.
-coverImage: >-
-  https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/cruise-control--cruise-control-4.jpg
-artworks:
-  - artwork: src/content/artworks/cruise-control-4
-  - artwork: src/content/artworks/cruise-control-copy
-  - artwork: src/content/artworks/cruise-control-poster
-  - artwork: src/content/artworks/exhibition-view-i
-  - artwork: src/content/artworks/exhibition-view-ii
-  - artwork: src/content/artworks/exhibition-view-iii
-  - artwork: src/content/artworks/exhibition-view-iv
-  - artwork: src/content/artworks/exhibition-view-v
-  - artwork: src/content/artworks/exhibition-view-vi
-  - artwork: src/content/artworks/hair-disk-installation
-  - artwork: src/content/artworks/installation-detail-hair-and-spikes
-  - artwork: src/content/artworks/installation-view-suspended-forms
-  - artwork: src/content/artworks/red-spiky-sphere
-  - artwork: src/content/artworks/sculptural-object-i
+coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_f1646719c78f4dff89ef5f39ac048929-mv2.jpg
 order: 1
+artworks:
+  - artwork: src/content/artworks/left-to-my-own-devices-i
+  - artwork: src/content/artworks/left-to-my-own-devices-ii
+  - artwork: src/content/artworks/left-to-my-own-devices-iii
+  - artwork: src/content/artworks/left-to-my-own-devices-iv
+  - artwork: src/content/artworks/cruise-control
+  - artwork: src/content/artworks/the-weight-is-a-gift
