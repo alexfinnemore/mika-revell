@@ -60,12 +60,15 @@ type Query {
   worksConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: WorksFilter): WorksConnection!
   homepage(relativePath: String): Homepage!
   homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
+  about(relativePath: String): About!
+  aboutConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AboutFilter): AboutConnection!
 }
 
 input DocumentFilter {
   artworks: ArtworksFilter
   works: WorksFilter
   homepage: HomepageFilter
+  about: AboutFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +94,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Artworks | Works | Homepage | Folder
+union DocumentNode = Artworks | Works | Homepage | About | Folder
 
 type Artworks implements Node & Document {
   title: String!
@@ -214,6 +217,82 @@ type HomepageConnection implements Connection {
   edges: [HomepageConnectionEdges]
 }
 
+type AboutEducation {
+  degree: String!
+  institution: String!
+  year: Float!
+}
+
+type AboutSoloExhibitions {
+  title: String!
+  venue: String!
+  year: Float!
+}
+
+type AboutPublicArtworks {
+  title: String!
+  venue: String!
+  note: String
+  collaborator: String
+  year: Float!
+}
+
+type About implements Node & Document {
+  heroImage: String!
+  heroImageAlt: String
+  bio: String!
+  secondImage: String
+  secondImageAlt: String
+  education: [AboutEducation]
+  soloExhibitions: [AboutSoloExhibitions]
+  publicArtworks: [AboutPublicArtworks]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input AboutEducationFilter {
+  degree: StringFilter
+  institution: StringFilter
+  year: NumberFilter
+}
+
+input AboutSoloExhibitionsFilter {
+  title: StringFilter
+  venue: StringFilter
+  year: NumberFilter
+}
+
+input AboutPublicArtworksFilter {
+  title: StringFilter
+  venue: StringFilter
+  note: StringFilter
+  collaborator: StringFilter
+  year: NumberFilter
+}
+
+input AboutFilter {
+  heroImage: StringFilter
+  heroImageAlt: StringFilter
+  bio: StringFilter
+  secondImage: StringFilter
+  secondImageAlt: StringFilter
+  education: AboutEducationFilter
+  soloExhibitions: AboutSoloExhibitionsFilter
+  publicArtworks: AboutPublicArtworksFilter
+}
+
+type AboutConnectionEdges {
+  cursor: String!
+  node: About
+}
+
+type AboutConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [AboutConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -226,12 +305,15 @@ type Mutation {
   createWorks(relativePath: String!, params: WorksMutation!): Works!
   updateHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
+  updateAbout(relativePath: String!, params: AboutMutation!): About!
+  createAbout(relativePath: String!, params: AboutMutation!): About!
 }
 
 input DocumentUpdateMutation {
   artworks: ArtworksMutation
   works: WorksMutation
   homepage: HomepageMutation
+  about: AboutMutation
   relativePath: String
 }
 
@@ -239,6 +321,7 @@ input DocumentMutation {
   artworks: ArtworksMutation
   works: WorksMutation
   homepage: HomepageMutation
+  about: AboutMutation
 }
 
 input ArtworksMutation {
@@ -270,6 +353,37 @@ input HomepageImagesMutation {
 
 input HomepageMutation {
   images: [HomepageImagesMutation]
+}
+
+input AboutEducationMutation {
+  degree: String
+  institution: String
+  year: Float
+}
+
+input AboutSoloExhibitionsMutation {
+  title: String
+  venue: String
+  year: Float
+}
+
+input AboutPublicArtworksMutation {
+  title: String
+  venue: String
+  note: String
+  collaborator: String
+  year: Float
+}
+
+input AboutMutation {
+  heroImage: String
+  heroImageAlt: String
+  bio: String
+  secondImage: String
+  secondImageAlt: String
+  education: [AboutEducationMutation]
+  soloExhibitions: [AboutSoloExhibitionsMutation]
+  publicArtworks: [AboutPublicArtworksMutation]
 }
 
 schema {

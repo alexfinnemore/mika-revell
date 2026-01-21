@@ -1,0 +1,91 @@
+heroImage: 'https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/About1.avif'
+heroImageAlt: Mika Revell portrait
+bio: >-
+  Mika Revell (b. 1985, Sydney, Australia) is a Chinese-American multimedia
+  artist. Her work delves into the complex relationship between symbols of power
+  and commodity, contrasting the ominous and alluring. Using pink pigments and
+  polished finishes, she investigates the processes of manufacturing and labor.
+  Her sculptures interrogate the global supply chain of resources and human
+  life. Revell explores how weapons and commodification shape our desires. Her
+  latest series addresses themes of power, war, and wealth both beautiful and
+  unsettling. She received her MFA in Sculpture from Central Saint Martin's,
+  London, and international residencies in Riyadh, Tokyo, and Los Angeles.
+
+
+  Her recent solo show, SOFTCORE WAR, explores the natural world wrapped in
+  fetishized commodity. Territorial, ideological, and environmental conflicts
+  surround us, yet we are desensitized, entertained, and addicted. Softcore War
+  examines this seemingly contradictory, but accepted, reality.
+
+
+  Using her signature pink as a panacea, Revell subverts symbols of violence
+  with pacifism and levity. She employs satire and absurdity to expose how we
+  accept our dystopian present. An inflatable bomb mocks the grotesque
+  celebration of destruction, while post-human, sculptures depicting rapid
+  evolution hint at the effects of industry on the body.
+
+
+  Combining organic and manufactured materials, with symbols of violence and
+  enjoyment, Revell exposes the ways we package and accept a brutal and
+  competitive world.
+secondImage: 'https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/About2.avif'
+secondImageAlt: Artist in studio
+education:
+  - degree: Masters in Clinical Psychology
+    institution: 'Pepperdine University, Los Angeles'
+    year: 2023
+  - degree: Masters in Fine Art
+    institution: 'Central Saint Martin''s University of the Arts, London'
+    year: 2009
+  - degree: Bachelor of Fine Arts
+    institution: 'Otis College of Art and Design, Los Angeles'
+    year: 2007
+soloExhibitions:
+  - title: SOFTCORE WAR
+    venue: 'Brutal. Gallery, Cape Town'
+    year: 2024
+  - title: Power | Play
+    venue: 'JAX DISTRICT, Riyadh'
+    year: 2022
+  - title: Unnatural Disasters
+    venue: LA Art Show
+    year: 2017
+  - title: Proximity Effect
+    venue: 'Nishikicho Gallery, Tokyo'
+    year: 2015
+publicArtworks:
+  - title: A Symphony of Circuit and Soil
+    venue: 'SFER IK Museum, Tulum'
+    note: Art in Nature Award
+    year: 2024
+  - title: Midwest Wildflowers
+    venue: The City of South Milwaukee
+    note: RFP Award
+    year: 2023
+  - title: Angels Stadium x Bulleit Bourbon
+    venue: Anaheim
+    year: 2023
+  - title: The Teaching Tree
+    venue: Venice Biennale
+    collaborator: Muhanned Shono
+    year: 2022
+  - title: A Song of Silence
+    venue: Art Basel
+    collaborator: Muhanned Shono
+    year: 2022
+  - title: I See You Brightest in the Dark
+    venue: Noor Riyadh Festival
+    collaborator: Muhanned Shono
+    year: 2022
+  - title: Angels Stadium x Don Julio
+    venue: Anaheim
+    year: 2022
+  - title: Superbowl LVI x Johnny Walker
+    venue: 'SoFi Stadium, Inglewood'
+    year: 2021
+  - title: Johnny Walker x Head in the Clouds
+    venue: 'Rose Bowl, Los Angeles'
+    year: 2021
+  - title: Architecture + Design Museum
+    venue: Los Angeles
+    year: 2020

@@ -44,8 +44,38 @@ const homepageCollection = defineCollection({
   }),
 });
 
+// Schema for about page
+const aboutCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    heroImage: z.string(),
+    heroImageAlt: z.string().optional(),
+    bio: z.string(),
+    secondImage: z.string().optional(),
+    secondImageAlt: z.string().optional(),
+    education: z.array(z.object({
+      degree: z.string(),
+      institution: z.string(),
+      year: z.number(),
+    })).optional(),
+    soloExhibitions: z.array(z.object({
+      title: z.string(),
+      venue: z.string(),
+      year: z.number(),
+    })).optional(),
+    publicArtworks: z.array(z.object({
+      title: z.string(),
+      venue: z.string(),
+      note: z.string().optional(),
+      collaborator: z.string().optional(),
+      year: z.number(),
+    })).optional(),
+  }),
+});
+
 export const collections = {
   'artworks': artworksCollection,
   'works': worksCollection,
   'homepage': homepageCollection,
+  'about': aboutCollection,
 };

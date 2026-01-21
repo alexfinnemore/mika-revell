@@ -30,3 +30,32 @@ fragment HomepageParts on Homepage {
     artworkId
   }
 }
+
+fragment AboutParts on About {
+  __typename
+  heroImage
+  heroImageAlt
+  bio
+  secondImage
+  secondImageAlt
+  education {
+    __typename
+    degree
+    institution
+    year
+  }
+  soloExhibitions {
+    __typename
+    title
+    venue
+    year
+  }
+  publicArtworks {
+    __typename
+    title
+    venue
+    note
+    collaborator
+    year
+  }
+}

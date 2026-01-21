@@ -1,17 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const about = await getEntry('about', 'main');
+const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, soloExhibitions, publicArtworks } = about.data;
 ---
 
 <BaseLayout title="About - Mika Revell">
-  <div class="max-w-2xl">
+  <div class="max-w-5xl">
+    <!-- Page Title -->
     <h1 class="text-2xl lg:text-3xl font-semibold mb-8">About</h1>
-    <div class="prose text-text-muted space-y-6">
-      <p>
-        Mika Revell is a multidisciplinary artist working in sculpture, installation, and murals.
-      </p>
-      <p>
-        [Artist bio and statement will go here]
-      </p>
-    </div>
+
+    <!-- Row 1: Photo 1 + Bio -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div>
+        <img
+          src={heroImage}
+          alt={heroImageAlt || "Artist portrait"}
+          class="w-full h-auto object-cover"
+        />
+      </div>
+      <div class="text-text-muted leading-relaxed whitespace-pre-line">
+        {bio}
+      </div>
+    </section>
+
+    <!-- Row 2: CV + Photo 2 -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <!-- Left Column: CV (Education, Public Artworks, Solo Exhibitions) -->
+      <div class="space-y-8">
+        <!-- Education -->
+        {education && education.length > 0 && (
+          <div>
+            <h2 class="text-lg font-semibold mb-4 uppercase tracking-wide">Education</h2>
+            <ul class="space-y-3 text-text-muted">
+              {education.map((item) => (
+                <li>
+                  <span class="block">{item.degree}</span>
+                  <span class="text-sm">{item.institution}, {item.year}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Public Artworks -->
+        {publicArtworks && publicArtworks.length > 0 && (
+          <div>
+            <h2 class="text-lg font-semibold mb-4 uppercase tracking-wide">Selected Public Artworks</h2>
+            <ul class="space-y-3 text-text-muted">
+              {publicArtworks.map((item) => (
+                <li>
+                  <span class="block">
+                    {item.title}
+                    {item.collaborator && <span class="italic"> (with {item.collaborator})</span>}
+                  </span>
+                  <span class="text-sm">
+                    {item.venue}, {item.year}
+                    {item.note && <span class="italic"> - {item.note}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Solo Exhibitions -->
+        {soloExhibitions && soloExhibitions.length > 0 && (
+          <div>
+            <h2 class="text-lg font-semibold mb-4 uppercase tracking-wide">Solo Exhibitions</h2>
+            <ul class="space-y-3 text-text-muted">
+              {soloExhibitions.map((item) => (
+                <li>
+                  <span class="block">{item.title}</span>
+                  <span class="text-sm">{item.venue}, {item.year}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <!-- Right Column: Photo 2 -->
+      {secondImage && (
+        <div>
+          <img
+            src={secondImage}
+            alt={secondImageAlt || "Artist image"}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      )}
+    </section>
   </div>
 </BaseLayout>

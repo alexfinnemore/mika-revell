@@ -214,6 +214,139 @@ var config_default = defineConfig({
             ]
           }
         ]
+      },
+      {
+        name: "about",
+        label: "About",
+        path: "src/content/about",
+        format: "yaml",
+        fields: [
+          {
+            type: "string",
+            name: "heroImage",
+            label: "Hero Image URL",
+            required: true,
+            ui: {
+              component: ImageUrlField
+            }
+          },
+          {
+            type: "string",
+            name: "heroImageAlt",
+            label: "Hero Image Alt Text"
+          },
+          {
+            type: "string",
+            name: "bio",
+            label: "Bio",
+            required: true,
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
+            type: "string",
+            name: "secondImage",
+            label: "Second Image URL",
+            ui: {
+              component: ImageUrlField
+            }
+          },
+          {
+            type: "string",
+            name: "secondImageAlt",
+            label: "Second Image Alt Text"
+          },
+          {
+            type: "object",
+            name: "education",
+            label: "Education",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "degree",
+                label: "Degree",
+                required: true
+              },
+              {
+                type: "string",
+                name: "institution",
+                label: "Institution",
+                required: true
+              },
+              {
+                type: "number",
+                name: "year",
+                label: "Year",
+                required: true
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "soloExhibitions",
+            label: "Solo Exhibitions",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true
+              },
+              {
+                type: "string",
+                name: "venue",
+                label: "Venue",
+                required: true
+              },
+              {
+                type: "number",
+                name: "year",
+                label: "Year",
+                required: true
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "publicArtworks",
+            label: "Public Artworks",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true
+              },
+              {
+                type: "string",
+                name: "venue",
+                label: "Venue",
+                required: true
+              },
+              {
+                type: "string",
+                name: "note",
+                label: "Note",
+                description: "Optional note (e.g., award, commission type)"
+              },
+              {
+                type: "string",
+                name: "collaborator",
+                label: "Collaborator"
+              },
+              {
+                type: "number",
+                name: "year",
+                label: "Year",
+                required: true
+              }
+            ]
+          }
+        ]
       }
     ]
   }
