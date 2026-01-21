@@ -1,9 +1,10 @@
-title: Paintings
+title: Selected Paintings
 slug: paintings
-description: >
+description: |
   A collection of oil paintings featuring portraits and figurative works.
-coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/paintings--magnolia-portrait.jpg
-order: 10
+coverImage: >-
+  https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/paintings--magnolia-portrait.jpg
 artworks:
   - artwork: src/content/artworks/magnolia-portrait
   - artwork: src/content/artworks/bull-skull-portrait
+order: 10
