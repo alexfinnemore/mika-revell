@@ -7,8 +7,8 @@ const contact = await getEntry('contact', 'contact');
 
 <BaseLayout title="Contact - Mika Revell">
   <div class="max-w-5xl">
-    <!-- Image left, text right layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12">
+    <!-- Image left, text + form right layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
       <!-- Image -->
       <div>
         <img
@@ -18,87 +18,79 @@ const contact = await getEntry('contact', 'contact');
         />
       </div>
 
-      <!-- Text content -->
-      <div class="flex flex-col justify-center">
-        <h1 class="text-2xl lg:text-3xl font-semibold mb-6">{contact.data.title}</h1>
-        <div class="space-y-4 text-text-muted whitespace-pre-line">
+      <!-- Text content + Form -->
+      <div class="flex flex-col">
+        <div class="space-y-4 text-text-muted whitespace-pre-line mb-8">
           {contact.data.body}
         </div>
-      </div>
-    </div>
 
-    <!-- Contact Form -->
-    <div class="border-t border-surface pt-12">
-      <h2 class="text-xl lg:text-2xl font-semibold mb-6">Get in Touch</h2>
-
-      <form
-        action="https://formspree.io/f/mgooreqd"
-        method="POST"
-        class="max-w-xl space-y-6"
-      >
+        <!-- Contact Form -->
         <div>
-          <label for="name" class="block text-sm font-medium mb-2">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            class="w-full px-4 py-3 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors"
-          />
-        </div>
+          <h2 class="text-lg font-semibold mb-4">Get in Touch</h2>
 
-        <div>
-          <label for="email" class="block text-sm font-medium mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-3 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors"
-          />
-        </div>
+          <form
+            action="https://formspree.io/f/mgooreqd"
+            method="POST"
+            class="space-y-4"
+          >
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-3 py-2 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors"
+              />
+            </div>
 
-        <div>
-          <label for="message" class="block text-sm font-medium mb-2">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="w-full px-4 py-3 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors resize-none"
-          ></textarea>
-        </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-3 py-2 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors"
+              />
+            </div>
 
-        <button
-          type="submit"
-          class="px-8 py-3 bg-text text-background font-medium hover:bg-text-muted transition-colors"
-        >
-          Send Message
-        </button>
-      </form>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-1">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="3"
+                required
+                class="w-full px-3 py-2 border border-surface rounded-none bg-background focus:outline-none focus:border-text transition-colors resize-none"
+              ></textarea>
+            </div>
 
-      <!-- Alternative contact info -->
-      <div class="mt-12 space-y-3 text-text-muted">
-        <p>Or reach out directly:</p>
-        {contact.data.email && (
-          <p>
-            <a href={`mailto:${contact.data.email}`} class="text-text hover:text-accent transition-colors">
-              {contact.data.email}
-            </a>
-          </p>
-        )}
-        {contact.data.instagram && (
-          <p>
-            <a
-              href={`https://www.instagram.com/${contact.data.instagram}/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-text hover:text-accent transition-colors"
+            <button
+              type="submit"
+              class="px-6 py-2 bg-text text-background font-medium hover:bg-text-muted transition-colors"
             >
-              @{contact.data.instagram}
-            </a>
-          </p>
-        )}
+              Send Message
+            </button>
+          </form>
+
+          <!-- Alternative contact info -->
+          {contact.data.instagram && (
+            <div class="mt-6 text-text-muted">
+              <p>Or find me on Instagram:</p>
+              <p class="mt-1">
+                <a
+                  href={`https://www.instagram.com/${contact.data.instagram}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text hover:text-accent transition-colors"
+                >
+                  @{contact.data.instagram}
+                </a>
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </div>
