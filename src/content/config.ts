@@ -26,7 +26,9 @@ const worksCollection = defineCollection({
     year: z.number().optional(),
     description: z.string().optional(),
     coverImage: z.string(),
-    artworks: z.array(z.string()), // Array of artwork IDs
+    artworks: z.array(z.object({
+      artwork: z.string(), // Reference path like "src/content/artworks/artwork-id"
+    })), // Array of artwork references
     order: z.number().optional(), // Display order on /work page (lower = first)
   }),
 });
@@ -73,9 +75,23 @@ const aboutCollection = defineCollection({
   }),
 });
 
+// Schema for contact page
+const contactCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    imageAlt: z.string().optional(),
+    body: z.string(),
+    email: z.string().optional(),
+    instagram: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'artworks': artworksCollection,
   'works': worksCollection,
   'homepage': homepageCollection,
   'about': aboutCollection,
+  'contact': contactCollection,
 };

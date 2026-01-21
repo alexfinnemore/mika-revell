@@ -17,16 +17,16 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/unnatural-disasters--fukushima.jpg
 order: 4
 artworks:
-  - fukushima
-  - fukushima-laartshow
-  - gulf-spill
-  - hiroshima
-  - kawaii-neon
-  - kuwait
-  - kuwait-ig
-  - la-artshow
-  - revell-trio-black
-  - revell-trio-pink
-  - trio-1-teal
-  - trio-10-grey
-  - weapon-of-choice-gallery
+  - artwork: src/content/artworks/fukushima
+  - artwork: src/content/artworks/fukushima-laartshow
+  - artwork: src/content/artworks/gulf-spill
+  - artwork: src/content/artworks/hiroshima
+  - artwork: src/content/artworks/kawaii-neon
+  - artwork: src/content/artworks/kuwait
+  - artwork: src/content/artworks/kuwait-ig
+  - artwork: src/content/artworks/la-artshow
+  - artwork: src/content/artworks/revell-trio-black
+  - artwork: src/content/artworks/revell-trio-pink
+  - artwork: src/content/artworks/trio-1-teal
+  - artwork: src/content/artworks/trio-10-grey
+  - artwork: src/content/artworks/weapon-of-choice-gallery

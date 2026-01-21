@@ -12,8 +12,8 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/tokyo-residency--shono-residency.jpg
 order: 7
 artworks:
-  - shono-residency
-  - shono-residency-2
-  - watermelon-vase
-  - kawaii-shoot
-  - octopus-graffiti
+  - artwork: src/content/artworks/shono-residency
+  - artwork: src/content/artworks/shono-residency-2
+  - artwork: src/content/artworks/watermelon-vase
+  - artwork: src/content/artworks/kawaii-shoot
+  - artwork: src/content/artworks/octopus-graffiti

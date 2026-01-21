@@ -16,7 +16,32 @@ fragment WorksParts on Works {
   year
   description
   coverImage
-  artworks
+  artworks {
+    __typename
+    artwork {
+      ... on Artworks {
+        __typename
+        title
+        image
+        medium
+        dimensions
+        year
+        description
+      }
+      ... on Document {
+        _sys {
+          filename
+          basename
+          hasReferences
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        id
+      }
+    }
+  }
   order
 }
 
@@ -58,4 +83,14 @@ fragment AboutParts on About {
     collaborator
     year
   }
+}
+
+fragment ContactParts on Contact {
+  __typename
+  title
+  image
+  imageAlt
+  body
+  email
+  instagram
 }

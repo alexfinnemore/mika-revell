@@ -158,11 +158,18 @@ var config_default = defineConfig({
             }
           },
           {
-            type: "string",
+            type: "object",
             name: "artworks",
-            label: "Artworks",
+            label: "Artworks in Series",
             list: true,
-            description: "List of artwork IDs included in this work (e.g., artwork-1, artwork-2)"
+            fields: [
+              {
+                type: "reference",
+                name: "artwork",
+                label: "Artwork",
+                collections: ["artworks"]
+              }
+            ]
           },
           {
             type: "number",
@@ -344,6 +351,56 @@ var config_default = defineConfig({
                 required: true
               }
             ]
+          }
+        ]
+      },
+      {
+        name: "contact",
+        label: "Contact",
+        path: "src/content/contact",
+        format: "yaml",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Page Title",
+            required: true,
+            isTitle: true
+          },
+          {
+            type: "string",
+            name: "image",
+            label: "Image URL",
+            required: true,
+            ui: {
+              component: ImageUrlField
+            }
+          },
+          {
+            type: "string",
+            name: "imageAlt",
+            label: "Image Alt Text"
+          },
+          {
+            type: "string",
+            name: "body",
+            label: "Body Text",
+            required: true,
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
+            type: "string",
+            name: "email",
+            label: "Contact Email",
+            description: "Email address for inquiries"
+          },
+          {
+            type: "string",
+            name: "instagram",
+            label: "Instagram Handle",
+            description: "Instagram username (without @)"
           }
         ]
       }

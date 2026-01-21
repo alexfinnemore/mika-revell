@@ -21,18 +21,18 @@ description: >-
 coverImage: >-
   https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/cruise-control--cruise-control-4.jpg
 artworks:
-  - cruise-control-4
-  - cruise-control-copy
-  - cruise-control-poster
-  - exhibition-view-i
-  - exhibition-view-ii
-  - exhibition-view-iii
-  - exhibition-view-iv
-  - exhibition-view-v
-  - exhibition-view-vi
-  - hair-disk-installation
-  - installation-detail-hair-and-spikes
-  - installation-view-suspended-forms
-  - red-spiky-sphere
-  - sculptural-object-i
+  - artwork: src/content/artworks/cruise-control-4
+  - artwork: src/content/artworks/cruise-control-copy
+  - artwork: src/content/artworks/cruise-control-poster
+  - artwork: src/content/artworks/exhibition-view-i
+  - artwork: src/content/artworks/exhibition-view-ii
+  - artwork: src/content/artworks/exhibition-view-iii
+  - artwork: src/content/artworks/exhibition-view-iv
+  - artwork: src/content/artworks/exhibition-view-v
+  - artwork: src/content/artworks/exhibition-view-vi
+  - artwork: src/content/artworks/hair-disk-installation
+  - artwork: src/content/artworks/installation-detail-hair-and-spikes
+  - artwork: src/content/artworks/installation-view-suspended-forms
+  - artwork: src/content/artworks/red-spiky-sphere
+  - artwork: src/content/artworks/sculptural-object-i
 order: 1

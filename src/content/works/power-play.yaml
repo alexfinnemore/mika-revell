@@ -48,24 +48,24 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/power-play--ai-midjourney-sculpture.png
 order: 3
 artworks:
-  - ai-midjourney-sculpture
-  - ai-midjourney-sculpture-2
-  - alone-above-a-raging-sea-1
-  - alone-above-a-raging-sea-2
-  - alone-above-a-raging-sea-3
-  - alone-above-a-raging-sea-ii
-  - alone-above-a-raging-sea-small
-  - biennale-poster-guerrilla
-  - cyborg-lightbox
-  - diamonds-are-a-girls-best-friend
-  - kowai-instal
-  - mika-biennale-poster
-  - mika-biennale-poster-guerrilla-installation
-  - mika-pink-bomb-power-play
-  - mika-poster-biennale
-  - mika-revell-between-bridges-dragged-1
-  - most-of-freedom-and-of-pleasure
-  - most-of-freedom-and-of-pleasure-1
-  - most-of-freedom-and-of-pleasure-1-large
-  - most-of-freedom-and-of-pleasure-2
-  - studio-documentation
+  - artwork: src/content/artworks/ai-midjourney-sculpture
+  - artwork: src/content/artworks/ai-midjourney-sculpture-2
+  - artwork: src/content/artworks/alone-above-a-raging-sea-1
+  - artwork: src/content/artworks/alone-above-a-raging-sea-2
+  - artwork: src/content/artworks/alone-above-a-raging-sea-3
+  - artwork: src/content/artworks/alone-above-a-raging-sea-ii
+  - artwork: src/content/artworks/alone-above-a-raging-sea-small
+  - artwork: src/content/artworks/biennale-poster-guerrilla
+  - artwork: src/content/artworks/cyborg-lightbox
+  - artwork: src/content/artworks/diamonds-are-a-girls-best-friend
+  - artwork: src/content/artworks/kowai-instal
+  - artwork: src/content/artworks/mika-biennale-poster
+  - artwork: src/content/artworks/mika-biennale-poster-guerrilla-installation
+  - artwork: src/content/artworks/mika-pink-bomb-power-play
+  - artwork: src/content/artworks/mika-poster-biennale
+  - artwork: src/content/artworks/mika-revell-between-bridges-dragged-1
+  - artwork: src/content/artworks/most-of-freedom-and-of-pleasure
+  - artwork: src/content/artworks/most-of-freedom-and-of-pleasure-1
+  - artwork: src/content/artworks/most-of-freedom-and-of-pleasure-1-large
+  - artwork: src/content/artworks/most-of-freedom-and-of-pleasure-2
+  - artwork: src/content/artworks/studio-documentation

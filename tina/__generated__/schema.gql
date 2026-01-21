@@ -62,6 +62,8 @@ type Query {
   homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
   about(relativePath: String): About!
   aboutConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AboutFilter): AboutConnection!
+  contact(relativePath: String): Contact!
+  contactConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactFilter): ContactConnection!
 }
 
 input DocumentFilter {
@@ -69,6 +71,7 @@ input DocumentFilter {
   works: WorksFilter
   homepage: HomepageFilter
   about: AboutFilter
+  contact: ContactFilter
 }
 
 type DocumentConnectionEdges {
@@ -94,7 +97,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Artworks | Works | Homepage | About | Folder
+union DocumentNode = Artworks | Works | Homepage | About | Contact | Folder
 
 type Artworks implements Node & Document {
   title: String!
@@ -145,6 +148,12 @@ type ArtworksConnection implements Connection {
   edges: [ArtworksConnectionEdges]
 }
 
+union WorksArtworksArtwork = Artworks
+
+type WorksArtworks {
+  artwork: WorksArtworksArtwork
+}
+
 type Works implements Node & Document {
   title: String!
   slug: String!
@@ -152,11 +161,19 @@ type Works implements Node & Document {
   year: Float
   description: String
   coverImage: String!
-  artworks: [String]
+  artworks: [WorksArtworks]
   order: Float
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input WorksArtworksArtworkFilter {
+  artworks: ArtworksFilter
+}
+
+input WorksArtworksFilter {
+  artwork: WorksArtworksArtworkFilter
 }
 
 input WorksFilter {
@@ -166,7 +183,7 @@ input WorksFilter {
   year: NumberFilter
   description: StringFilter
   coverImage: StringFilter
-  artworks: StringFilter
+  artworks: WorksArtworksFilter
   order: NumberFilter
 }
 
@@ -293,6 +310,38 @@ type AboutConnection implements Connection {
   edges: [AboutConnectionEdges]
 }
 
+type Contact implements Node & Document {
+  title: String!
+  image: String!
+  imageAlt: String
+  body: String!
+  email: String
+  instagram: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ContactFilter {
+  title: StringFilter
+  image: StringFilter
+  imageAlt: StringFilter
+  body: StringFilter
+  email: StringFilter
+  instagram: StringFilter
+}
+
+type ContactConnectionEdges {
+  cursor: String!
+  node: Contact
+}
+
+type ContactConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ContactConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -307,6 +356,8 @@ type Mutation {
   createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   updateAbout(relativePath: String!, params: AboutMutation!): About!
   createAbout(relativePath: String!, params: AboutMutation!): About!
+  updateContact(relativePath: String!, params: ContactMutation!): Contact!
+  createContact(relativePath: String!, params: ContactMutation!): Contact!
 }
 
 input DocumentUpdateMutation {
@@ -314,6 +365,7 @@ input DocumentUpdateMutation {
   works: WorksMutation
   homepage: HomepageMutation
   about: AboutMutation
+  contact: ContactMutation
   relativePath: String
 }
 
@@ -322,6 +374,7 @@ input DocumentMutation {
   works: WorksMutation
   homepage: HomepageMutation
   about: AboutMutation
+  contact: ContactMutation
 }
 
 input ArtworksMutation {
@@ -333,6 +386,10 @@ input ArtworksMutation {
   description: String
 }
 
+input WorksArtworksMutation {
+  artwork: String
+}
+
 input WorksMutation {
   title: String
   slug: String
@@ -340,7 +397,7 @@ input WorksMutation {
   year: Float
   description: String
   coverImage: String
-  artworks: [String]
+  artworks: [WorksArtworksMutation]
   order: Float
 }
 
@@ -384,6 +441,15 @@ input AboutMutation {
   education: [AboutEducationMutation]
   soloExhibitions: [AboutSoloExhibitionsMutation]
   publicArtworks: [AboutPublicArtworksMutation]
+}
+
+input ContactMutation {
+  title: String
+  image: String
+  imageAlt: String
+  body: String
+  email: String
+  instagram: String
 }
 
 schema {

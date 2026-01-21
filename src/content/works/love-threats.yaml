@@ -23,7 +23,7 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/love-threats--love-threat-1-0.jpeg
 order: 5
 artworks:
-  - love-threat-1-0
-  - china-doll
-  - china-doll-studio
-  - china-doll-whitewall
+  - artwork: src/content/artworks/love-threat-1-0
+  - artwork: src/content/artworks/china-doll
+  - artwork: src/content/artworks/china-doll-studio
+  - artwork: src/content/artworks/china-doll-whitewall

@@ -29,28 +29,28 @@ description: >
 coverImage: >-
   https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/softcore-war--artist-with-pink-sculptures.jpeg
 artworks:
-  - softcore-war-installation
-  - artist-with-pink-sculptures
-  - artist-with-spine-sculpture
-  - consume-us
-  - detailed-installation-view
-  - disarmed
-  - exhibition-documentation
-  - exhibition-opening
-  - exhibition-view
-  - gallery-installation
-  - hope-is-a-waking-dream
-  - installation-detail
-  - installation-detail-ii
-  - installation-detail-iii
-  - installation-view-bottles
-  - iron-lung
-  - pink-heart-with-pacemaker
-  - plant-close-up
-  - replicant
-  - softcore-war-bones-close-up
-  - softcore-war-bones-wide-shot
-  - softcore-war-gallery-text
-  - the-dreams-in-which-i-m-dying
-  - under-the-skin
+  - artwork: src/content/artworks/softcore-war-installation
+  - artwork: src/content/artworks/artist-with-pink-sculptures
+  - artwork: src/content/artworks/artist-with-spine-sculpture
+  - artwork: src/content/artworks/consume-us
+  - artwork: src/content/artworks/detailed-installation-view
+  - artwork: src/content/artworks/disarmed
+  - artwork: src/content/artworks/exhibition-documentation
+  - artwork: src/content/artworks/exhibition-opening
+  - artwork: src/content/artworks/exhibition-view
+  - artwork: src/content/artworks/gallery-installation
+  - artwork: src/content/artworks/hope-is-a-waking-dream
+  - artwork: src/content/artworks/installation-detail
+  - artwork: src/content/artworks/installation-detail-ii
+  - artwork: src/content/artworks/installation-detail-iii
+  - artwork: src/content/artworks/installation-view-bottles
+  - artwork: src/content/artworks/iron-lung
+  - artwork: src/content/artworks/pink-heart-with-pacemaker
+  - artwork: src/content/artworks/plant-close-up
+  - artwork: src/content/artworks/replicant
+  - artwork: src/content/artworks/softcore-war-bones-close-up
+  - artwork: src/content/artworks/softcore-war-bones-wide-shot
+  - artwork: src/content/artworks/softcore-war-gallery-text
+  - artwork: src/content/artworks/the-dreams-in-which-i-m-dying
+  - artwork: src/content/artworks/under-the-skin
 order: 2

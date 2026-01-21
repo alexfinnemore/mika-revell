@@ -7,10 +7,10 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/murals--agave-fields-forever-don-julio-angels-stadium.jpg
 order: 6
 artworks:
-  - agave-fields-forever-don-julio-angels-stadium
-  - angelsstadium-10-x-75-don-julio-20-000
-  - chinatown-night-a-d-museum
-  - keep-walking
-  - rooftop-birdofparadise-final
-  - south-milwaukee-mural
-  - superbowl-nightlights-sofi-stadium
+  - artwork: src/content/artworks/agave-fields-forever-don-julio-angels-stadium
+  - artwork: src/content/artworks/angelsstadium-10-x-75-don-julio-20-000
+  - artwork: src/content/artworks/chinatown-night-a-d-museum
+  - artwork: src/content/artworks/keep-walking
+  - artwork: src/content/artworks/rooftop-birdofparadise-final
+  - artwork: src/content/artworks/south-milwaukee-mural
+  - artwork: src/content/artworks/superbowl-nightlights-sofi-stadium

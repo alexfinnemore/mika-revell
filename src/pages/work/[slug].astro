@@ -13,10 +13,13 @@ export async function getStaticPaths() {
 
 const { work } = Astro.props;
 
-// Get artwork details for each artwork ID in the series
-const artworkPromises = work.data.artworks.map((artworkId: string) =>
-  getEntry('artworks', artworkId)
-);
+// Get artwork details for each artwork reference in the series
+// Reference fields store objects like { artwork: "src/content/artworks/artwork-id" }
+const artworkPromises = work.data.artworks.map((item: { artwork: string }) => {
+  // Extract the artwork ID from the reference path
+  const artworkId = item.artwork?.split('/').pop() || '';
+  return artworkId ? getEntry('artworks', artworkId) : null;
+});
 const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
 ---
 

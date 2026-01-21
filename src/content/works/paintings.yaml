@@ -5,5 +5,5 @@ description: >
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/paintings--magnolia-portrait.jpg
 order: 10
 artworks:
-  - magnolia-portrait
-  - bull-skull-portrait
+  - artwork: src/content/artworks/magnolia-portrait
+  - artwork: src/content/artworks/bull-skull-portrait
