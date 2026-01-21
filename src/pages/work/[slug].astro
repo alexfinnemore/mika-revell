@@ -29,17 +29,20 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
     </a>
   </div>
 
-  <header class="mb-12">
+  <header class="mb-12 max-w-2xl">
     <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{work.data.title}</h1>
+    {work.data.subtitle && (
+      <p class="text-text-muted italic">{work.data.subtitle}</p>
+    )}
     {work.data.year && (
       <p class="text-text-muted">{work.data.year}</p>
     )}
     {work.data.description && (
-      <p class="mt-4 text-text-muted max-w-2xl">{work.data.description}</p>
+      <p class="mt-4 text-text-muted">{work.data.description}</p>
     )}
   </header>
 
-  <section class="space-y-8 lg:space-y-12">
+  <section class="space-y-8 lg:space-y-12 max-w-2xl">
     {artworks.map((artwork) => (
       <article id={artwork?.id} class="scroll-mt-20">
         <div class="bg-surface">
