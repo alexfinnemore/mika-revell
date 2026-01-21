@@ -1,4 +1,42 @@
-import { defineConfig } from "tinacms";
+import { defineConfig, wrapFieldsWithMeta } from "tinacms";
+import React from "react";
+
+// Custom image preview component for external URLs (like Vercel Blob)
+const ImageUrlField = wrapFieldsWithMeta(({ input }: { input: { value: string; onChange: (value: string) => void; name: string } }) => {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("input", {
+      type: "text",
+      id: input.name,
+      value: input.value || "",
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => input.onChange(e.target.value),
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: "14px",
+        border: "1px solid #e1e1e1",
+        borderRadius: "4px",
+        boxSizing: "border-box" as const,
+      },
+    }),
+    input.value &&
+      React.createElement("img", {
+        src: input.value,
+        alt: "Preview",
+        style: {
+          maxWidth: "100%",
+          maxHeight: "200px",
+          marginTop: "8px",
+          borderRadius: "4px",
+          objectFit: "contain" as const,
+        },
+        onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
+          (e.target as HTMLImageElement).style.display = "none";
+        },
+      })
+  );
+});
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -14,6 +52,17 @@ export default defineConfig({
   clientId: process.env.TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
+
+  // Search configuration - requires TINA_SEARCH_TOKEN from Tina Cloud dashboard
+  // Only enable search if the token is configured
+  ...(process.env.TINA_SEARCH_TOKEN && {
+    search: {
+      tina: {
+        indexerToken: process.env.TINA_SEARCH_TOKEN,
+        stopwordLanguages: ["eng"],
+      },
+    },
+  }),
 
   build: {
     outputFolder: "admin",
@@ -46,6 +95,9 @@ export default defineConfig({
             name: "image",
             label: "Image URL",
             required: true,
+            ui: {
+              component: ImageUrlField,
+            },
           },
           {
             type: "string",
@@ -114,13 +166,16 @@ export default defineConfig({
             name: "coverImage",
             label: "Cover Image URL",
             required: true,
+            ui: {
+              component: ImageUrlField,
+            },
           },
           {
             type: "string",
             name: "artworks",
             label: "Artworks",
             list: true,
-            description: "List of artwork IDs included in this work",
+            description: "List of artwork IDs included in this work (e.g., artwork-1, artwork-2)",
           },
           {
             type: "number",
@@ -147,6 +202,9 @@ export default defineConfig({
                 name: "image",
                 label: "Image URL",
                 required: true,
+                ui: {
+                  component: ImageUrlField,
+                },
               },
               {
                 type: "string",

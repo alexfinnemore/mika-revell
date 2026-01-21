@@ -1,5 +1,40 @@
 // tina/config.ts
-import { defineConfig } from "tinacms";
+import { defineConfig, wrapFieldsWithMeta } from "tinacms";
+import React from "react";
+var ImageUrlField = wrapFieldsWithMeta(({ input }) => {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("input", {
+      type: "text",
+      id: input.name,
+      value: input.value || "",
+      onChange: (e) => input.onChange(e.target.value),
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: "14px",
+        border: "1px solid #e1e1e1",
+        borderRadius: "4px",
+        boxSizing: "border-box"
+      }
+    }),
+    input.value && React.createElement("img", {
+      src: input.value,
+      alt: "Preview",
+      style: {
+        maxWidth: "100%",
+        maxHeight: "200px",
+        marginTop: "8px",
+        borderRadius: "4px",
+        objectFit: "contain"
+      },
+      onError: (e) => {
+        e.target.style.display = "none";
+      }
+    })
+  );
+});
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "master";
 var config_default = defineConfig({
   branch,
@@ -7,6 +42,16 @@ var config_default = defineConfig({
   clientId: process.env.TINA_CLIENT_ID,
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
+  // Search configuration - requires TINA_SEARCH_TOKEN from Tina Cloud dashboard
+  // Only enable search if the token is configured
+  ...process.env.TINA_SEARCH_TOKEN && {
+    search: {
+      tina: {
+        indexerToken: process.env.TINA_SEARCH_TOKEN,
+        stopwordLanguages: ["eng"]
+      }
+    }
+  },
   build: {
     outputFolder: "admin",
     publicFolder: "public"
@@ -37,7 +82,10 @@ var config_default = defineConfig({
             type: "string",
             name: "image",
             label: "Image URL",
-            required: true
+            required: true,
+            ui: {
+              component: ImageUrlField
+            }
           },
           {
             type: "string",
@@ -105,14 +153,17 @@ var config_default = defineConfig({
             type: "string",
             name: "coverImage",
             label: "Cover Image URL",
-            required: true
+            required: true,
+            ui: {
+              component: ImageUrlField
+            }
           },
           {
             type: "string",
             name: "artworks",
             label: "Artworks",
             list: true,
-            description: "List of artwork IDs included in this work"
+            description: "List of artwork IDs included in this work (e.g., artwork-1, artwork-2)"
           },
           {
             type: "number",
@@ -138,7 +189,10 @@ var config_default = defineConfig({
                 type: "string",
                 name: "image",
                 label: "Image URL",
-                required: true
+                required: true,
+                ui: {
+                  component: ImageUrlField
+                }
               },
               {
                 type: "string",
