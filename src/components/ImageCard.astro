@@ -19,8 +19,8 @@ const {
 
 // Generate optimized image URLs
 const optimizedSrc = getOptimizedImageUrl({ src: image, width: 1024 });
-const srcset = generateSrcset(image, IMAGE_WIDTHS.card);
-const sizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
+const srcset = generateSrcset(image, IMAGE_WIDTHS.full);
+const sizes = "(max-width: 768px) 100vw, (max-width: 1024px) calc(100vw - 48px), 900px";
 ---
 
 <article class="group relative">
