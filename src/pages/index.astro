@@ -11,9 +11,13 @@ const images = featured?.data?.images || [];
 <BaseLayout title="Mika Revell - Fine Art & Murals">
   <section class="space-y-4 sm:space-y-6 lg:space-y-8">
     {images.map((item) => {
-      // Build the href - will link to work page with anchor to specific artwork
-      const href = item.workSlug
-        ? `/work/${item.workSlug}${item.artworkId ? `#${item.artworkId}` : ''}`
+      // workSlug/artworkId are TinaCMS reference paths (e.g. "src/content/works/cruise-control").
+      // Take the basename to get the work slug and artwork id, then link to the work page
+      // with an anchor to the specific artwork.
+      const workSlug = item.workSlug?.split('/').pop();
+      const artworkId = item.artworkId?.split('/').pop();
+      const href = workSlug
+        ? `/work/${workSlug}${artworkId ? `#${artworkId}` : ''}`
         : undefined;
 
       return (

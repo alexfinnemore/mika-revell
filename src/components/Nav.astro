@@ -14,7 +14,7 @@ const navItems = [
 
 function isActive(href: string, current: string): boolean {
   if (href === '/') return current === '/';
-  return current.startsWith(href);
+  return current === href || current.startsWith(href + '/');
 }
 ---
 
@@ -90,7 +90,7 @@ function isActive(href: string, current: string): boolean {
 </nav>
 
 <!-- Desktop Sidebar -->
-<nav class="hidden lg:block fixed top-0 left-0 h-full w-[180px] bg-background z-40 border-r border-surface">
+<nav class="hidden lg:block fixed top-0 left-0 h-full w-[var(--nav-width)] bg-background z-40 border-r border-surface">
   <div class="p-6 h-full flex flex-col">
     <a href="/" class="nav-text text-sm font-semibold tracking-wider mb-12">
       Mika Revell

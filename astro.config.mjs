@@ -1,11 +1,20 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.mikarevell.com',
   output: 'static',
+  // Keep hidden work series (hidden: true in src/content/works) out of the sitemap
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !['/work/murals/', '/work/tokyo-residency/'].includes(new URL(page).pathname),
+    }),
+  ],
   adapter: vercel({
     imageService: true,
     imagesConfig: {

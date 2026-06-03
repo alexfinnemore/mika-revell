@@ -50,7 +50,7 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
             src={getOptimizedImageUrl({ src: artwork?.data.image, width: 1024 })}
             srcset={generateSrcset(artwork?.data.image, IMAGE_WIDTHS.full)}
             sizes="(max-width: 672px) 100vw, 672px"
-            alt={artwork?.data.title}
+            alt={artwork?.data.title ?? 'Artwork by Mika Revell'}
             class="w-full"
             loading="lazy"
             decoding="async"
@@ -76,7 +76,23 @@ const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
     ))}
   </section>
 
-  {artworks.length === 0 && (
+  {artworks.length === 0 && work.data.coverImage && (
+    <section class="max-w-2xl">
+      <div class="bg-surface">
+        <img
+          src={getOptimizedImageUrl({ src: work.data.coverImage, width: 1024 })}
+          srcset={generateSrcset(work.data.coverImage, IMAGE_WIDTHS.full)}
+          sizes="(max-width: 672px) 100vw, 672px"
+          alt={work.data.title}
+          class="w-full"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </section>
+  )}
+
+  {artworks.length === 0 && !work.data.coverImage && (
     <div class="text-center py-20 text-text-muted">
       <p>No artworks in this series yet.</p>
     </div>

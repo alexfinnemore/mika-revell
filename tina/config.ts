@@ -212,7 +212,7 @@ export default defineConfig({
             list: true,
             ui: {
               itemProps: (item: { alt?: string; artworkId?: string; image?: string }) => ({
-                label: item?.alt || item?.artworkId || (item?.image ? item.image.split('/').pop()?.split('.')[0] : "New Image"),
+                label: item?.alt || item?.artworkId?.split('/').pop() || (item?.image ? item.image.split('/').pop()?.split('.')[0] : "New Image"),
               }),
             },
             fields: [
@@ -231,16 +231,18 @@ export default defineConfig({
                 label: "Alt Text",
               },
               {
-                type: "string",
+                type: "reference",
                 name: "workSlug",
-                label: "Work Slug",
-                description: "Link to a work series",
+                label: "Work Series",
+                description: "The series this image links to (pick from the list)",
+                collections: ["works"],
               },
               {
-                type: "string",
+                type: "reference",
                 name: "artworkId",
-                label: "Artwork ID",
-                description: "Link to a specific artwork",
+                label: "Artwork",
+                description: "Optional: scroll to a specific artwork within the series",
+                collections: ["artworks"],
               },
             ],
           },

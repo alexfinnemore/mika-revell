@@ -36,6 +36,8 @@ export function generateSrcset(
   widths: number[] = [640, 1024, 1536, 1920],
   quality: number = 75
 ): string {
+  // In development, Vercel Image Optimization isn't available, so return the raw
+  // source (the browser falls back to the plain `src`). Real srcsets are emitted in prod.
   if (import.meta.env.DEV) {
     return src;
   }
