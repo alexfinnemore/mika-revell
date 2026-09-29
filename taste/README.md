@@ -55,7 +55,7 @@ The structure follows Smaak's model of a taste package, so the two can be conver
 | context docs | `mika-voice/analysis-2026-09-29.md`, `issue-writing.md` (its research part) |
 | skills | `.claude/skills/*/SKILL.md` |
 
-A copy of this package was also created in Smaak as `mika-revell` on 2026-09-29. This folder is the source of truth. If the two differ, this folder wins.
+This folder is the only copy. A Smaak package `mika-revell` was built first on 2026-09-29 and retired the same day when the package moved here.
 
 ## One fact, one home
 
