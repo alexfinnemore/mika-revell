@@ -18,7 +18,9 @@ export default defineConfig({
       // Each width and format is a separately billed transformation.
       sizes: IMAGE_WIDTHS,
       domains: ['pbj78tn8g5vmaowa.public.blob.vercel-storage.com'],
-      formats: ['image/webp'],
+      // One format keeps billed transformations down. AVIF is the smallest; the
+      // few browsers without it get the original file.
+      formats: ['image/avif'],
     },
   }),
   vite: {
