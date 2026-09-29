@@ -1,38 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ImageCard from '../components/ImageCard.astro';
-import { getEntry } from 'astro:content';
+import { getHomepageImages } from '../lib/content';
 
-// Get featured images from content collection
-const featured = await getEntry('homepage', 'featured');
-const images = featured?.data?.images || [];
+const images = await getHomepageImages();
 ---
 
-<BaseLayout title="Mika Revell - Fine Art & Murals">
+<BaseLayout ogImage={images[0]?.image}>
+  <h1 class="sr-only">Mika Revell</h1>
   <section class="space-y-4 sm:space-y-6 lg:space-y-8">
-    {images.map((item) => {
-      // workSlug/artworkId are TinaCMS reference paths (e.g. "src/content/works/cruise-control").
-      // Take the basename to get the work slug and artwork id, then link to the work page
-      // with an anchor to the specific artwork.
-      const workSlug = item.workSlug?.split('/').pop();
-      const artworkId = item.artworkId?.split('/').pop();
-      const href = workSlug
-        ? `/work/${workSlug}${artworkId ? `#${artworkId}` : ''}`
-        : undefined;
-
-      return (
-        <ImageCard
-          image={item.image}
-          alt={item.alt || 'Artwork by Mika Revell'}
-          href={href}
-        />
-      );
-    })}
+    {images.map((item, i) => (
+      <ImageCard
+        image={item.image}
+        alt={item.alt || 'Artwork by Mika Revell'}
+        href={item.href}
+        priority={i === 0}
+      />
+    ))}
   </section>
-
-  {images.length === 0 && (
-    <div class="text-center py-20 text-text-muted">
-      <p>No featured artwork yet.</p>
-    </div>
-  )}
 </BaseLayout>

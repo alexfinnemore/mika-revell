@@ -1,5 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist", "node_modules", ".vercel", "public/admin", "tina/__generated__", "test-results", "playwright-report"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true
+  }
 }

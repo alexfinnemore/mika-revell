@@ -1,25 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
-import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../lib/image';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
 
 const about = await getEntry('about', 'main');
+if (!about) throw new Error('src/content/about/main.yaml is missing.');
 const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, soloExhibitions, publicArtworks } = about.data;
 ---
 
-<BaseLayout title="About - Mika Revell">
+<BaseLayout title="About" ogImage={heroImage}>
+  <h1 class="sr-only">About Mika Revell</h1>
   <div class="max-w-5xl">
     <!-- Row 1: Photo 1 + Bio -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
       <div>
-        <img
-          src={getOptimizedImageUrl({ src: heroImage, width: 1024 })}
-          srcset={generateSrcset(heroImage, IMAGE_WIDTHS.card)}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt={heroImageAlt || "Artist portrait"}
-          class="w-full h-auto object-cover"
-          loading="eager"
-          decoding="async"
+        <ResponsiveImage
+          src={heroImage}
+          alt={heroImageAlt || 'Mika Revell'}
+          sizes="(max-width: 767px) 100vw, 440px"
+          class="w-full h-auto"
+          priority
         />
       </div>
       <div class="text-text-muted leading-relaxed whitespace-pre-line">
@@ -86,14 +86,11 @@ const { heroImage, heroImageAlt, bio, secondImage, secondImageAlt, education, so
       <!-- Right Column: Photo 2 -->
       {secondImage && (
         <div>
-          <img
-            src={getOptimizedImageUrl({ src: secondImage, width: 1024 })}
-            srcset={generateSrcset(secondImage, IMAGE_WIDTHS.card)}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            alt={secondImageAlt || "Artist image"}
-            class="w-full h-auto object-cover"
-            loading="lazy"
-            decoding="async"
+          <ResponsiveImage
+            src={secondImage}
+            alt={secondImageAlt || 'Mika Revell in the studio'}
+            sizes="(max-width: 767px) 100vw, 440px"
+            class="w-full h-auto"
           />
         </div>
       )}

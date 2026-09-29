@@ -1,20 +1,25 @@
 ---
+import { getPublicWriting } from '../lib/content';
+
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
 
+// Writing only appears in the menu once there is something to read.
+const hasWriting = (await getPublicWriting()).length > 0;
 const navItems = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/work', label: 'Work' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about/', label: 'About' },
+  { href: '/work/', label: 'Work' },
+  ...(hasWriting ? [{ href: '/writing/', label: 'Writing' }] : []),
+  { href: '/contact/', label: 'Contact' },
 ];
 
 function isActive(href: string, current: string): boolean {
   if (href === '/') return current === '/';
-  return current === href || current.startsWith(href + '/');
+  return current.startsWith(href) || current === href.replace(/\/$/, '');
 }
 ---
 
@@ -41,6 +46,7 @@ function isActive(href: string, current: string): boolean {
 <!-- Mobile Slide-in Menu -->
 <nav
   id="mobile-menu"
+  aria-label="Main"
   class="lg:hidden fixed top-0 left-0 h-full w-64 bg-background z-50 transform -translate-x-full transition-transform duration-300 ease-out"
 >
   <div class="p-6">
@@ -90,7 +96,7 @@ function isActive(href: string, current: string): boolean {
 </nav>
 
 <!-- Desktop Sidebar -->
-<nav class="hidden lg:block fixed top-0 left-0 h-full w-[var(--nav-width)] bg-background z-40 border-r border-surface">
+<nav aria-label="Main" class="hidden lg:block fixed top-0 left-0 h-full w-[var(--nav-width)] bg-background z-40 border-r border-surface">
   <div class="p-6 h-full flex flex-col">
     <a href="/" class="nav-text text-sm font-semibold tracking-wider mb-12">
       Mika Revell

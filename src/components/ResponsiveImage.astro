@@ -1,0 +1,30 @@
+---
+// One image, resized by Vercel and sized so the page doesn't jump while it loads.
+import { imageUrl, imageSrcset, imageSize } from '../lib/image';
+
+interface Props {
+  src: string;
+  alt: string;
+  /** How wide the image is drawn, for the browser to pick a size. */
+  sizes: string;
+  class?: string;
+  /** The first image on a page should load straight away; the rest can wait. */
+  priority?: boolean;
+}
+
+const { src, alt, sizes, class: className, priority = false } = Astro.props;
+const size = imageSize(src);
+---
+
+<img
+  src={imageUrl(src, 1280)}
+  srcset={imageSrcset(src)}
+  sizes={sizes}
+  alt={alt}
+  width={size?.width}
+  height={size?.height}
+  class={className}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : undefined}
+  decoding="async"
+/>

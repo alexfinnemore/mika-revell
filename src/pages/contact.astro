@@ -1,20 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
 
 const contact = await getEntry('contact', 'contact');
+if (!contact) throw new Error('src/content/contact/contact.yaml is missing.');
 ---
 
-<BaseLayout title="Contact - Mika Revell">
+<BaseLayout title="Contact">
+  <h1 class="sr-only">Contact</h1>
   <div class="max-w-5xl">
     <!-- Image left, text + form right layout -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
       <!-- Image -->
       <div>
-        <img
+        <ResponsiveImage
           src={contact.data.image}
           alt={contact.data.imageAlt || 'Mika Revell'}
-          class="w-full object-cover"
+          sizes="(max-width: 767px) 100vw, 440px"
+          class="w-full h-auto"
+          priority
         />
       </div>
 

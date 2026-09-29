@@ -1,17 +1,24 @@
 ---
+import '@fontsource-variable/inter/wght.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { imageUrl } from '../lib/image';
 
 interface Props {
+  /** Page name, shown as "Name | Mika Revell". Leave out on the homepage. */
   title?: string;
   description?: string;
+  /** Image used when the page is shared on social media or in messages. */
+  ogImage?: string;
 }
 
-const {
-  title = 'Mika Revell - Fine Art & Murals',
-  description = 'Fine art and mural work by Mika Revell. Exploring themes through mixed media sculpture and installation.'
-} = Astro.props;
+const SITE_NAME = 'Mika Revell';
+const DEFAULT_DESCRIPTION =
+  'Mika Revell is a Chinese-American multimedia artist working in sculpture, painting and installation, exploring the relationship between symbols of power and commodity.';
+
+const { title, description = DEFAULT_DESCRIPTION, ogImage } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Multimedia artist`;
 
 const currentPath = Astro.url.pathname;
 
@@ -28,17 +35,18 @@ const canonicalURL = Astro.site ? new URL(currentPath, Astro.site).href : undefi
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
-    <title>{title}</title>
+    <title>{fullTitle}</title>
 
     <!-- Open Graph -->
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
-
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {ogImage && Astro.site && (
+      <meta property="og:image" content={new URL(imageUrl(ogImage, 1280), Astro.site).href} />
+    )}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
   </head>
   <body class="min-h-screen flex flex-col">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-background focus:px-4 focus:py-2 focus:border focus:border-surface">

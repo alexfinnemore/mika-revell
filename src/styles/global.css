@@ -1,6 +1,3 @@
-/* Import Inter font from Google Fonts - must be before other imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-
 @import "tailwindcss";
 
 /* Custom theme configuration using Tailwind v4 @theme */
@@ -13,33 +10,10 @@
   --color-accent-hover: #E5685D;
   --color-surface: #F3F3F3;
 
-  /* Typography */
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Typography (Inter is self-hosted, imported in BaseLayout) */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
 
-  /* Font sizes - mobile first */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.25rem;    /* 20px */
-  --font-size-xl: 1.5rem;     /* 24px */
-  --font-size-2xl: 2rem;      /* 32px */
-  --font-size-3xl: 3rem;      /* 48px */
-
-  /* Spacing */
-  --spacing-px: 1px;
-  --spacing-0: 0;
-  --spacing-1: 0.25rem;   /* 4px */
-  --spacing-2: 0.5rem;    /* 8px */
-  --spacing-3: 0.75rem;   /* 12px */
-  --spacing-4: 1rem;      /* 16px */
-  --spacing-6: 1.5rem;    /* 24px */
-  --spacing-8: 2rem;      /* 32px */
-  --spacing-12: 3rem;     /* 48px */
-  --spacing-16: 4rem;     /* 64px */
-  --spacing-24: 6rem;     /* 96px */
-
-  /* Max width for content */
-  --max-width-content: 980px;
+  /* Layout */
   --nav-width: 180px;
 
   /* Transitions */
@@ -53,7 +27,7 @@ html {
 }
 
 body {
-  font-family: var(--font-family-sans);
+  font-family: var(--font-sans);
   font-weight: 300;
   color: var(--color-text);
   background-color: var(--color-background);
@@ -104,3 +78,14 @@ img {
   letter-spacing: 0.1em;
   font-weight: 300;
 }
+
+/* Body text of writing pages (Markdown from the CMS) */
+.writing > * + * { margin-top: 1em; }
+.writing h2, .writing h3 { color: var(--color-text); margin-top: 2em; }
+.writing h2 { font-size: 1.25rem; }
+.writing h3 { font-size: 1.125rem; }
+.writing a { text-decoration: underline; text-underline-offset: 2px; }
+.writing blockquote { border-left: 2px solid var(--color-surface); padding-left: 1em; font-style: italic; }
+.writing ul { list-style: disc; padding-left: 1.25em; }
+.writing ol { list-style: decimal; padding-left: 1.25em; }
+.writing img { margin: 2em 0; }

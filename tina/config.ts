@@ -1,8 +1,8 @@
-import { defineConfig, wrapFieldsWithMeta } from "tinacms";
+import { defineConfig, wrapFieldsWithMeta, type TinaField } from "tinacms";
 import React from "react";
 
 // Custom image preview component for external URLs (like Vercel Blob)
-const ImageUrlField = wrapFieldsWithMeta(({ input }: { input: { value: string; onChange: (value: string) => void; name: string } }) => {
+const ImageUrlField = wrapFieldsWithMeta<{ input: { value: string; onChange: (value: string) => void; name: string } }>(({ input }) => {
   return React.createElement(
     "div",
     null,
@@ -37,6 +37,35 @@ const ImageUrlField = wrapFieldsWithMeta(({ input }: { input: { value: string; o
       })
   );
 });
+
+// Images live in Vercel Blob, so image fields hold a URL (with a preview) rather than an upload.
+const imageUrlField = (name: string, label: string, opts: { required?: boolean } = {}): TinaField => ({
+  type: "string",
+  name,
+  label,
+  description: "Paste the Vercel Blob URL. Claude uploads new images for you (see AGENTS.md).",
+  ...opts,
+  ui: { component: ImageUrlField as any },
+});
+
+// Filenames become page URLs and the ids other entries link to, so they're
+// generated from the title once, when an entry is created, and never renamed.
+const slugify = (text?: string) =>
+  (text || "untitled")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+const filenameFromTitle = {
+  readonly: true,
+  slugify: (values: { title?: string }) => slugify(values?.title),
+};
+const labelFromRef = (ref?: string) =>
+  ref?.split("/").pop()?.replace(/\.(ya?ml|md)$/, "").replace(/-/g, " ") || "New item";
+
+// Pages that are a single document: the editor can change them but not add or delete copies.
+const singleDocument = { allowedActions: { create: false, delete: false } };
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -83,6 +112,7 @@ export default defineConfig({
         label: "Artworks",
         path: "src/content/artworks",
         format: "yaml",
+        ui: { filename: filenameFromTitle },
         fields: [
           {
             type: "string",
@@ -91,15 +121,7 @@ export default defineConfig({
             required: true,
             isTitle: true,
           },
-          {
-            type: "string",
-            name: "image",
-            label: "Image URL",
-            required: true,
-            ui: {
-              component: ImageUrlField,
-            },
-          },
+          imageUrlField("image", "Image URL", { required: true }),
           {
             type: "string",
             name: "medium",
@@ -127,9 +149,13 @@ export default defineConfig({
       },
       {
         name: "works",
-        label: "Works",
+        label: "Series",
         path: "src/content/works",
         format: "yaml",
+        ui: {
+          filename: filenameFromTitle,
+          router: ({ document }) => `/work/${document._sys.filename}/`,
+        },
         fields: [
           {
             type: "string",
@@ -137,12 +163,6 @@ export default defineConfig({
             label: "Title",
             required: true,
             isTitle: true,
-          },
-          {
-            type: "string",
-            name: "slug",
-            label: "Slug",
-            required: true,
           },
           {
             type: "string",
@@ -162,20 +182,16 @@ export default defineConfig({
               component: "textarea",
             },
           },
-          {
-            type: "string",
-            name: "coverImage",
-            label: "Cover Image URL",
-            required: true,
-            ui: {
-              component: ImageUrlField,
-            },
-          },
+          imageUrlField("coverImage", "Cover Image URL", { required: true }),
           {
             type: "object",
             name: "artworks",
             label: "Artworks in Series",
+            description: "In the order they appear on the page. Drag to reorder.",
             list: true,
+            ui: {
+              itemProps: (item: { artwork?: string }) => ({ label: labelFromRef(item?.artwork) }),
+            },
             fields: [
               {
                 type: "reference",
@@ -195,7 +211,7 @@ export default defineConfig({
             type: "boolean",
             name: "hidden",
             label: "Hidden",
-            description: "Hide this series from the public site",
+            description: "Hidden series have no page on the site and don't appear anywhere.",
           },
         ],
       },
@@ -204,11 +220,13 @@ export default defineConfig({
         label: "Homepage",
         path: "src/content/homepage",
         format: "yaml",
+        ui: { ...singleDocument, router: () => "/" },
         fields: [
           {
             type: "object",
             name: "images",
             label: "Featured Images",
+            description: "Shown top to bottom in this order. Drag to reorder.",
             list: true,
             ui: {
               itemProps: (item: { alt?: string; artworkId?: string; image?: string }) => ({
@@ -216,15 +234,7 @@ export default defineConfig({
               }),
             },
             fields: [
-              {
-                type: "string",
-                name: "image",
-                label: "Image URL",
-                required: true,
-                ui: {
-                  component: ImageUrlField,
-                },
-              },
+              imageUrlField("image", "Image URL", { required: true }),
               {
                 type: "string",
                 name: "alt",
@@ -253,16 +263,9 @@ export default defineConfig({
         label: "About",
         path: "src/content/about",
         format: "yaml",
+        ui: { ...singleDocument, router: () => "/about/" },
         fields: [
-          {
-            type: "string",
-            name: "heroImage",
-            label: "Hero Image URL",
-            required: true,
-            ui: {
-              component: ImageUrlField,
-            },
-          },
+          imageUrlField("heroImage", "Hero Image URL", { required: true }),
           {
             type: "string",
             name: "heroImageAlt",
@@ -277,14 +280,7 @@ export default defineConfig({
               component: "textarea",
             },
           },
-          {
-            type: "string",
-            name: "secondImage",
-            label: "Second Image URL",
-            ui: {
-              component: ImageUrlField,
-            },
-          },
+          imageUrlField("secondImage", "Second Image URL"),
           {
             type: "string",
             name: "secondImageAlt",
@@ -386,6 +382,7 @@ export default defineConfig({
         label: "Contact",
         path: "src/content/contact",
         format: "yaml",
+        ui: { ...singleDocument, router: () => "/contact/" },
         fields: [
           {
             type: "string",
@@ -394,15 +391,7 @@ export default defineConfig({
             required: true,
             isTitle: true,
           },
-          {
-            type: "string",
-            name: "image",
-            label: "Image URL",
-            required: true,
-            ui: {
-              component: ImageUrlField,
-            },
-          },
+          imageUrlField("image", "Image URL", { required: true }),
           {
             type: "string",
             name: "imageAlt",
@@ -428,6 +417,54 @@ export default defineConfig({
             name: "instagram",
             label: "Instagram Handle",
             description: "Instagram username (without @)",
+          },
+        ],
+      },
+      {
+        name: "writing",
+        label: "Writing",
+        path: "src/content/writing",
+        format: "md",
+        ui: {
+          filename: filenameFromTitle,
+          router: ({ document }) => `/writing/${document._sys.filename}/`,
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            required: true,
+            isTitle: true,
+          },
+          {
+            type: "string",
+            name: "subtitle",
+            label: "Subtitle",
+            description: "Optional, e.g. where or for what the text was written",
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Date",
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Display Order",
+            description: "Lower numbers appear first. Leave empty to sort newest first.",
+          },
+          {
+            type: "boolean",
+            name: "hidden",
+            label: "Hidden",
+            description: "Hidden writing has no page on the site.",
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Text",
+            isBody: true,
           },
         ],
       },

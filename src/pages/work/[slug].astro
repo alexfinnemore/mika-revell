@@ -1,139 +1,76 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../../lib/image';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { getPublicWorks, getWorkArtworks } from '../../lib/content';
+import { paragraphs, summary } from '../../lib/text';
 
 export async function getStaticPaths() {
-  const works = await getCollection('works');
-  return works.map((work) => ({
-    params: { slug: work.data.slug },
-    props: { work },
-  }));
+  const works = await getPublicWorks();
+  return works.map((work) => ({ params: { slug: work.id }, props: { work } }));
 }
 
 const { work } = Astro.props;
-
-// Get artwork details for each artwork reference in the series
-// Reference fields store objects like { artwork: "src/content/artworks/artwork-id" }
-const artworkPromises = work.data.artworks.map((item: { artwork: string }) => {
-  // Extract the artwork ID from the reference path
-  const artworkId = item.artwork?.split('/').pop() || '';
-  return artworkId ? getEntry('artworks', artworkId) : null;
-});
-const artworks = (await Promise.all(artworkPromises)).filter(Boolean);
+const { title, subtitle, year, description, coverImage } = work.data;
+const artworks = await getWorkArtworks(work);
+const IMAGE_SIZES = '(max-width: 719px) 100vw, 672px';
 ---
 
-<BaseLayout title={`${work.data.title} - Mika Revell`}>
+<BaseLayout
+  title={title}
+  description={description ? summary(description) : undefined}
+  ogImage={coverImage}
+>
   <header class="mb-12 max-w-2xl">
-    <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{work.data.title}</h1>
-    {(work.data.subtitle || work.data.year) && (
+    <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{title}</h1>
+    {(subtitle || year) && (
       <p class="text-text-muted">
-        {work.data.subtitle && <span class="italic">{work.data.subtitle}</span>}
-        {work.data.subtitle && work.data.year && <span> | </span>}
-        {work.data.year}
+        {subtitle && <span class="italic">{subtitle}</span>}
+        {subtitle && year && <span> | </span>}
+        {year}
       </p>
     )}
-    {work.data.description && (
+    {description && (
       <div class="mt-4 text-text-muted space-y-4">
-        {work.data.description.split(/\n+/).filter((p: string) => p.trim()).map((paragraph: string) => (
-          <p>{paragraph.trim()}</p>
-        ))}
+        {paragraphs(description).map((p) => <p>{p}</p>)}
       </div>
     )}
   </header>
 
   <section class="space-y-8 lg:space-y-12 max-w-2xl">
-    {artworks.map((artwork) => (
-      <article id={artwork?.id} class="scroll-mt-20">
-        <div class="relative group artwork-container bg-surface">
-          <img
-            src={getOptimizedImageUrl({ src: artwork?.data.image, width: 1024 })}
-            srcset={generateSrcset(artwork?.data.image, IMAGE_WIDTHS.full)}
-            sizes="(max-width: 672px) 100vw, 672px"
-            alt={artwork?.data.title ?? 'Artwork by Mika Revell'}
-            class="w-full"
-            loading="lazy"
-            decoding="async"
-          />
-          {(artwork?.data.title || artwork?.data.year || artwork?.data.medium || artwork?.data.description) && (
-            <div class="artwork-overlay absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              {artwork?.data.title && (
-                <h2 class="text-lg">{artwork?.data.title}</h2>
-              )}
-              {artwork?.data.year && (
-                <p class="text-sm opacity-80">{artwork?.data.year}</p>
-              )}
-              {artwork?.data.medium && (
-                <p class="text-sm opacity-80">{artwork?.data.medium}</p>
-              )}
-              {artwork?.data.description && (
-                <p class="text-sm opacity-80 mt-2">{artwork?.data.description}</p>
-              )}
-            </div>
-          )}
-        </div>
-      </article>
-    ))}
-  </section>
+    {artworks.map((artwork, i) => {
+      const { title, year, medium, dimensions, description, image } = artwork.data;
+      const details = [year, medium, dimensions].filter(Boolean);
+      return (
+        <figure id={artwork.id} class="artwork scroll-mt-20 relative group bg-surface" tabindex="0">
+          <ResponsiveImage src={image} alt={title} sizes={IMAGE_SIZES} class="w-full h-auto" priority={i === 0} />
+          <figcaption class="artwork-caption absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
+            <h2 class="text-lg">{title}</h2>
+            {details.map((d) => <p class="text-sm opacity-80">{d}</p>)}
+            {description && <p class="text-sm opacity-80 mt-2">{description}</p>}
+          </figcaption>
+        </figure>
+      );
+    })}
 
-  {artworks.length === 0 && work.data.coverImage && (
-    <section class="max-w-2xl">
+    {artworks.length === 0 && (
       <div class="bg-surface">
-        <img
-          src={getOptimizedImageUrl({ src: work.data.coverImage, width: 1024 })}
-          srcset={generateSrcset(work.data.coverImage, IMAGE_WIDTHS.full)}
-          sizes="(max-width: 672px) 100vw, 672px"
-          alt={work.data.title}
-          class="w-full"
-          loading="lazy"
-          decoding="async"
-        />
+        <ResponsiveImage src={coverImage} alt={title} sizes={IMAGE_SIZES} class="w-full h-auto" priority />
       </div>
-    </section>
-  )}
-
-  {artworks.length === 0 && !work.data.coverImage && (
-    <div class="text-center py-20 text-text-muted">
-      <p>No artworks in this series yet.</p>
-    </div>
-  )}
+    )}
+  </section>
 </BaseLayout>
 
 <script>
-  // Mobile tap support for artwork overlays
-  document.querySelectorAll('.artwork-container').forEach((container) => {
-    container.addEventListener('click', (e) => {
-      // Only handle taps on touch devices
-      if (!('ontouchstart' in window)) return;
+  // On touch screens there is no hover, so a tap shows or hides an artwork's caption.
+  const captions = () => document.querySelectorAll<HTMLElement>('.artwork-caption');
+  const hideAll = () => captions().forEach((c) => c.classList.remove('opacity-100'));
 
-      const overlay = container.querySelector('.artwork-overlay');
-      if (!overlay) return;
-
-      // Toggle active state
-      const isActive = overlay.classList.contains('opacity-100');
-
-      // Hide all other overlays first
-      document.querySelectorAll('.artwork-overlay').forEach((o) => {
-        o.classList.remove('opacity-100');
-        o.classList.add('opacity-0');
-      });
-
-      // Toggle this overlay
-      if (!isActive) {
-        overlay.classList.remove('opacity-0');
-        overlay.classList.add('opacity-100');
-      }
-    });
-  });
-
-  // Hide overlay when tapping outside
   document.addEventListener('click', (e) => {
-    if (!('ontouchstart' in window)) return;
-    if (!(e.target as Element).closest('.artwork-container')) {
-      document.querySelectorAll('.artwork-overlay').forEach((o) => {
-        o.classList.remove('opacity-100');
-        o.classList.add('opacity-0');
-      });
-    }
+    if (!matchMedia('(hover: none)').matches) return;
+    const artwork = (e.target as Element).closest('.artwork');
+    const caption = artwork?.querySelector<HTMLElement>('.artwork-caption');
+    const wasShown = caption?.classList.contains('opacity-100');
+    hideAll();
+    if (caption && !wasShown) caption.classList.add('opacity-100');
   });
 </script>

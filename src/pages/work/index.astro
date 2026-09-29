@@ -1,30 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ImageCard from '../../components/ImageCard.astro';
-import { getCollection } from 'astro:content';
-import { getOptimizedImageUrl, generateSrcset, IMAGE_WIDTHS } from '../../lib/image';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { getPublicWorks } from '../../lib/content';
 
-// Get all work series, filter out hidden ones, and sort by order
-const allWorks = await getCollection('works');
-const works = allWorks
-  .filter(work => !work.data.hidden)
-  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+const works = await getPublicWorks();
 ---
 
-<BaseLayout title="Work - Mika Revell">
+<BaseLayout title="Work" ogImage={works[0]?.data.coverImage}>
+  <h1 class="sr-only">Work</h1>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-    {works.map((work) => (
+    {works.map((work, i) => (
       <article class="group">
-        <a href={`/work/${work.data.slug}`} class="block">
+        <a href={`/work/${work.id}/`} class="block">
           <div class="overflow-hidden bg-surface mb-4">
-            <img
-              src={getOptimizedImageUrl({ src: work.data.coverImage, width: 1024 })}
-              srcset={generateSrcset(work.data.coverImage, IMAGE_WIDTHS.card)}
-              sizes="(max-width: 640px) 100vw, 50vw"
-              alt={work.data.title}
+            <ResponsiveImage
+              src={work.data.coverImage}
+              alt=""
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 440px"
               class="w-full aspect-[4/3] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-              loading="lazy"
-              decoding="async"
+              priority={i < 2}
             />
           </div>
           <h2 class="text-lg font-normal group-hover:text-accent transition-colors">
@@ -34,10 +28,4 @@ const works = allWorks
       </article>
     ))}
   </div>
-
-  {works.length === 0 && (
-    <div class="text-center py-20 text-text-muted">
-      <p>No work series yet.</p>
-    </div>
-  )}
 </BaseLayout>
