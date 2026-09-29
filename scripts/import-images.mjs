@@ -24,6 +24,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { execFileSync } from 'node:child_process';
 import { parseDocument } from 'yaml';
+import { slugify } from '../src/lib/ids.mjs';
 
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif)$/i;
 const ARTWORKS = 'src/content/artworks';
@@ -54,9 +55,6 @@ if (!fs.existsSync(folder)) fail(`Folder not found: ${folder}`);
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(seriesId)) fail(`Series id "${seriesId}" should be lowercase words joined by hyphens, e.g. "softcore-war".`);
 if (opts.year && !Number.isInteger(year)) fail(`--year should be a number, got "${opts.year}".`);
 
-const slugify = (s) =>
-  s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-
 // "03-mushroom_cloud (pink).jpg" -> "Mushroom Cloud (Pink)"
 const titleFromFilename = (file) =>
   path
@@ -65,7 +63,8 @@ const titleFromFilename = (file) =>
     .replace(/[_-]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+    // Capitalize the start of each word, but not the letter after an apostrophe ("I'm", "Girl's").
+    .replace(/(^|[\s(])(\p{L})/gu, (_, before, letter) => before + letter.toUpperCase());
 
 const files = fs
   .readdirSync(folder)
@@ -99,17 +98,24 @@ if (dryRun) process.exit(0);
 if (!process.env.BLOB_READ_WRITE_TOKEN) fail('BLOB_READ_WRITE_TOKEN is not set. Run `vercel env pull .env` first.');
 const { put } = await import('@vercel/blob');
 
+// Upload everything first and only then write files, so a failed upload leaves the
+// repo untouched and the same command can simply be run again (it overwrites the
+// uploads from the failed attempt).
 for (const p of plan) {
   const blob = await put(p.blobPath, fs.readFileSync(path.join(folder, p.file)), {
     access: 'public',
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
   p.url = blob.url;
+  console.log(`  uploaded ${p.file}`);
+}
+
+for (const p of plan) {
   const artwork = { title: p.title, image: p.url, ...(year && { year }), ...(opts.medium && { medium: opts.medium }) };
   const doc = parseDocument('');
   doc.contents = doc.createNode(artwork);
   fs.writeFileSync(p.yamlPath, doc.toString());
-  console.log(`  uploaded ${p.file}`);
 }
 
 const refs = plan.map((p) => ({ artwork: `src/content/artworks/${p.id}.yaml` }));

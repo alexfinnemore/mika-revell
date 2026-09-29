@@ -1,3 +1,19 @@
+/** Markdown reduced to plain text, for meta descriptions: links keep their text, images go. */
+export function markdownToText(markdown: string): string {
+  return markdown
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/^\s*(#{1,6}|>|[-*+]|\d+\.)\s+/gm, '')
+    .replace(/[*_`~]/g, '');
+}
+
+/** A date as "September 2026". */
+export function formatMonth(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', timeZone: 'UTC' });
+}
+
 /** Split text from the CMS into paragraphs on blank lines or line breaks. */
 export function paragraphs(text: string): string[] {
   return text

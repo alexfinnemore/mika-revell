@@ -17,7 +17,9 @@ export default defineConfig({
   expect: {
     // Photos are masked, so the only expected noise is anti-aliasing. The limit is
     // tight enough that changing one word of text fails.
-    toHaveScreenshot: { maxDiffPixels: 100, animations: 'disabled', timeout: 30_000 },
+    toHaveScreenshot: { maxDiffPixels: 100, animations: 'disabled' },
+    // Long pages take a while to settle into a stable screenshot.
+    timeout: 30_000,
   },
   use: {
     baseURL: BASE_URL ?? 'http://localhost:4321',

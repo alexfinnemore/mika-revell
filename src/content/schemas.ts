@@ -1,5 +1,6 @@
 // Content schemas for the site. TinaCMS describes the same fields in
-// tina/config.ts for the editor; `npm run check:schema` fails if the two drift.
+// tina/config.ts for the editor; `npm run check:schema` (part of `npm run build`)
+// fails if the two drift.
 //
 // Kept in a plain module (not src/content.config.ts) so the schema check script
 // can import it outside of Astro.

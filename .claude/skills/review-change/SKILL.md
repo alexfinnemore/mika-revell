@@ -13,7 +13,7 @@ If you are Claude Code, run the built-in `/code-review` skill on the branch (the
 
 ## 2. Automated checks
 
-All of these must pass. Paste the one-line result of each into the issue.
+All of these must pass: check each exit code, not just the printed summary. Paste the result of each into the issue.
 
 - `npm run check` (types)
 - `npm run build` (includes the content schema check and link checking)

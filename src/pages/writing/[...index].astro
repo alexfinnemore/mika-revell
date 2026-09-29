@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublicWriting } from '../../lib/content';
+import { formatMonth } from '../../lib/text';
 
 // Only build /writing/ when there is writing to list.
 export async function getStaticPaths() {
@@ -9,7 +10,6 @@ export async function getStaticPaths() {
 }
 
 const { pieces } = Astro.props;
-const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', timeZone: 'UTC' });
 ---
 
 <BaseLayout title="Writing">
@@ -21,7 +21,7 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric',
           <h2 class="text-lg font-normal group-hover:text-accent transition-colors">{piece.data.title}</h2>
           {(piece.data.subtitle || piece.data.date) && (
             <p class="text-sm text-text-muted">
-              {[piece.data.subtitle, piece.data.date && formatDate(piece.data.date)].filter(Boolean).join(' | ')}
+              {[piece.data.subtitle, piece.data.date && formatMonth(piece.data.date)].filter(Boolean).join(' | ')}
             </p>
           )}
         </a>

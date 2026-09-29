@@ -1,10 +1,5 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
-
-// TinaCMS stores references as repo paths ("src/content/artworks/oil-spill" or
-// ".../oil-spill.yaml"). The entry id is the filename without its extension.
-export function refId(ref: string | undefined): string | undefined {
-  return ref?.split('/').pop()?.replace(/\.(ya?ml|md)$/, '') || undefined;
-}
+import { refId } from './ids.mjs';
 
 // A broken reference fails the build with the file to fix, rather than
 // quietly dropping an artwork from the live site.
@@ -26,34 +21,46 @@ export async function getPublicWorks() {
 
 /** The artworks in a series, in the order the series lists them. */
 export async function getWorkArtworks(work: CollectionEntry<'works'>) {
+  // An empty slot (added in the CMS without picking an artwork) is skipped, not an error.
+  const ids = work.data.artworks.map(({ artwork }) => refId(artwork)).filter((id) => id !== undefined);
   return Promise.all(
-    work.data.artworks.map(async ({ artwork }) => {
-      const id = refId(artwork)!;
-      return (await getEntry('artworks', id)) ?? missing('artworks', id, `Series "${work.id}"`);
-    }),
+    ids.map(async (id) => (await getEntry('artworks', id)) ?? missing('artworks', id, `Series "${work.id}"`)),
   );
 }
 
-/** Homepage images with their link resolved. Links to hidden or missing series fail the build. */
+/**
+ * Homepage images with their link resolved.
+ *
+ * A link to a file that doesn't exist fails the build. Images of a hidden series
+ * are left off the homepage, so hiding a series in the CMS hides it everywhere.
+ * A link to an artwork that isn't in the linked series goes to the series page
+ * without jumping to the artwork. Both of those log a warning in the build.
+ */
 export async function getHomepageImages() {
   const homepage = await getEntry('homepage', 'featured');
   if (!homepage) throw new Error('src/content/homepage/featured.yaml is missing.');
-  const publicIds = new Set((await getPublicWorks()).map((w) => w.id));
 
-  return Promise.all(
+  const items = await Promise.all(
     homepage.data.images.map(async (item, i) => {
       const where = `Homepage image ${i + 1} (${item.alt || item.image})`;
       const workId = refId(item.workSlug);
-      const artworkId = refId(item.artworkId);
-      if (workId && !(await getEntry('works', workId))) missing('works', workId, where);
-      if (workId && !publicIds.has(workId)) {
-        throw new Error(`${where} links to series "${workId}", which is hidden.`);
-      }
+      let artworkId = refId(item.artworkId);
       if (artworkId && !(await getEntry('artworks', artworkId))) missing('artworks', artworkId, where);
-      const href = workId ? `/work/${workId}${artworkId ? `#${artworkId}` : ''}` : undefined;
-      return { ...item, href };
+      if (!workId) return { ...item, href: undefined };
+
+      const work = (await getEntry('works', workId)) ?? missing('works', workId, where);
+      if (work.data.hidden) {
+        console.warn(`${where} is left off the homepage because series "${workId}" is hidden.`);
+        return null;
+      }
+      if (artworkId && !work.data.artworks.some(({ artwork }) => refId(artwork) === artworkId)) {
+        console.warn(`${where} links to artwork "${artworkId}", which isn't in series "${workId}".`);
+        artworkId = undefined;
+      }
+      return { ...item, href: `/work/${workId}/${artworkId ? `#${artworkId}` : ''}` };
     }),
   );
+  return items.filter((item) => item !== null);
 }
 
 /** Pages of writing shown on the site, newest or lowest `order` first. */

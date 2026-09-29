@@ -72,5 +72,8 @@ const IMAGE_SIZES = '(max-width: 719px) 100vw, 672px';
     const wasShown = caption?.classList.contains('opacity-100');
     hideAll();
     if (caption && !wasShown) caption.classList.add('opacity-100');
+    // The tap also focuses the artwork, and focus shows the caption for keyboard
+    // users, so let go of focus when a tap hides it.
+    else (artwork as HTMLElement | null)?.blur();
   });
 </script>

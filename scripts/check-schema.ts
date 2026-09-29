@@ -3,7 +3,8 @@
 // in one place is either rejected by the build or invisible in the editor.
 //
 // Reads the schema TinaCMS generates (tina/__generated__/_schema.json), so run
-// it after `tinacms build`. `npm run build` does this.
+// it after `tinacms build`. `npm run build` does this; `npm run check:schema`
+// runs it alone.
 import fs from 'node:fs';
 import * as schemas from '../src/content/schemas.ts';
 

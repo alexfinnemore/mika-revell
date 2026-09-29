@@ -103,6 +103,11 @@ test('artwork captions show on hover or tap', async ({ page, isMobile }) => {
   if (isMobile) await artwork.tap();
   else await artwork.hover();
   await expect(caption).toHaveCSS('opacity', '1');
+  if (isMobile) {
+    // A second tap hides it again.
+    await artwork.tap();
+    await expect(caption).toHaveCSS('opacity', '0');
+  }
 });
 
 test('contact form is labelled and posts to Formspree', async ({ page }) => {

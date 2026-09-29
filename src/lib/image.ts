@@ -1,12 +1,9 @@
 /**
  * Images live in Vercel Blob and are resized on request by Vercel Image
- * Optimization (/_vercel/image). Each width is a separately billed
- * transformation, so the site asks for a small fixed set. These widths must
- * match `imagesConfig.sizes` in astro.config.mjs.
+ * Optimization (/_vercel/image), at the widths in IMAGE_WIDTHS.
  */
 import dimensions from '../data/image-dimensions.json';
-
-export const IMAGE_WIDTHS = [640, 1280, 1920] as const;
+import { IMAGE_WIDTHS } from './ids.mjs';
 
 const QUALITY = 75;
 

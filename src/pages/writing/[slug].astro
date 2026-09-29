@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { render } from 'astro:content';
 import { getPublicWriting } from '../../lib/content';
-import { summary } from '../../lib/text';
+import { formatMonth, markdownToText, summary } from '../../lib/text';
 
 export async function getStaticPaths() {
   const pieces = await getPublicWriting();
@@ -12,10 +12,9 @@ export async function getStaticPaths() {
 const { piece } = Astro.props;
 const { title, subtitle, date } = piece.data;
 const { Content } = await render(piece);
-const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', timeZone: 'UTC' });
 ---
 
-<BaseLayout title={title} description={piece.body ? summary(piece.body.replace(/[#*_>`]/g, '')) : undefined}>
+<BaseLayout title={title} description={piece.body ? summary(markdownToText(piece.body)) : undefined}>
   <article class="max-w-2xl">
     <header class="mb-8">
       <h1 class="text-2xl lg:text-3xl font-semibold mb-2">{title}</h1>
@@ -23,7 +22,7 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric',
         <p class="text-text-muted">
           {subtitle && <span class="italic">{subtitle}</span>}
           {subtitle && date && <span> | </span>}
-          {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
+          {date && <time datetime={date.toISOString()}>{formatMonth(date)}</time>}
         </p>
       )}
     </header>

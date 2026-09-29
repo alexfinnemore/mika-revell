@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { IMAGE_WIDTHS } from './src/lib/ids.mjs';
 
 export default defineConfig({
   site: 'https://www.mikarevell.com',
@@ -14,9 +15,8 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
     imagesConfig: {
-      // Must match IMAGE_WIDTHS in src/lib/image.ts. Each width and format is a
-      // separately billed transformation, so keep both lists short.
-      sizes: [640, 1280, 1920],
+      // Each width and format is a separately billed transformation.
+      sizes: IMAGE_WIDTHS,
       domains: ['pbj78tn8g5vmaowa.public.blob.vercel-storage.com'],
       formats: ['image/webp'],
     },

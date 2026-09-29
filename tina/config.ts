@@ -1,5 +1,6 @@
 import { defineConfig, wrapFieldsWithMeta, type TinaField } from "tinacms";
 import React from "react";
+import { refId, slugify } from "../src/lib/ids.mjs";
 
 // Custom image preview component for external URLs (like Vercel Blob)
 const ImageUrlField = wrapFieldsWithMeta<{ input: { value: string; onChange: (value: string) => void; name: string } }>(({ input }) => {
@@ -50,19 +51,11 @@ const imageUrlField = (name: string, label: string, opts: { required?: boolean }
 
 // Filenames become page URLs and the ids other entries link to, so they're
 // generated from the title once, when an entry is created, and never renamed.
-const slugify = (text?: string) =>
-  (text || "untitled")
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 const filenameFromTitle = {
   readonly: true,
   slugify: (values: { title?: string }) => slugify(values?.title),
 };
-const labelFromRef = (ref?: string) =>
-  ref?.split("/").pop()?.replace(/\.(ya?ml|md)$/, "").replace(/-/g, " ") || "New item";
+const labelFromRef = (ref?: string) => refId(ref)?.replace(/-/g, " ") || "New item";
 
 // Pages that are a single document: the editor can change them but not add or delete copies.
 const singleDocument = { allowedActions: { create: false, delete: false } };
@@ -211,7 +204,7 @@ export default defineConfig({
             type: "boolean",
             name: "hidden",
             label: "Hidden",
-            description: "Hidden series have no page on the site and don't appear anywhere.",
+            description: "Hidden series have no page on the site and don't appear anywhere, including their images on the homepage.",
           },
         ],
       },

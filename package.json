@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "tinacms dev -c \"astro dev --ignore-lock\"",
-    "build": "npm run images:dimensions && tinacms build --skip-cloud-checks && node scripts/check-schema.ts && astro build",
+    "build": "npm run images:dimensions && tinacms build --skip-cloud-checks && npm run check:schema && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "test": "playwright test",
@@ -12,7 +12,8 @@
     "images:dimensions": "node scripts/image-dimensions.mjs",
     "images:import": "node --env-file-if-exists=.env scripts/import-images.mjs",
     "astro": "astro",
-    "check:secrets": "gitleaks git . --log-opts=origin/master..HEAD --redact --no-banner"
+    "check:secrets": "gitleaks git . --log-opts=origin/master..HEAD --redact --no-banner",
+    "check:schema": "node scripts/check-schema.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
