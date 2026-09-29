@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { pages, hiddenWorks, publicWriting, loadAllImages } from './pages';
 
 test.describe('every page', () => {
@@ -72,7 +72,8 @@ test.describe('navigation', () => {
     await page.goto('/');
     for (const label of ['About', 'Work', 'Contact']) {
       if (isMobile) await page.getByRole('button', { name: 'Open menu' }).click();
-      await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: label }).locator('visible=true').click();
+      const menu = page.locator(isMobile ? '#mobile-menu' : '#desktop-nav');
+      await menu.getByRole('link', { name: label }).click();
       await expect(page).toHaveURL(new RegExp(`/${label.toLowerCase()}/?$`));
     }
   });

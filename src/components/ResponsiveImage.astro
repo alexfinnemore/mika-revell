@@ -10,10 +10,17 @@ interface Props {
   class?: string;
   /** The first image on a page should load straight away; the rest can wait. */
   priority?: boolean;
+  /**
+   * Keep the box at the original photo's proportions even after a resized copy
+   * loads (whose proportions can differ by a pixel), so nothing shifts. Turn off
+   * when the class sets its own aspect ratio.
+   */
+  lockAspect?: boolean;
 }
 
-const { src, alt, sizes, class: className, priority = false } = Astro.props;
+const { src, alt, sizes, class: className, priority = false, lockAspect = true } = Astro.props;
 const size = imageSize(src);
+const style = lockAspect && size ? `aspect-ratio: ${size.width} / ${size.height}` : undefined;
 ---
 
 <img
@@ -24,6 +31,7 @@ const size = imageSize(src);
   width={size?.width}
   height={size?.height}
   class={className}
+  style={style}
   loading={priority ? 'eager' : 'lazy'}
   fetchpriority={priority ? 'high' : undefined}
   decoding="async"

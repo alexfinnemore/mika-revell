@@ -6,7 +6,7 @@
 // original files, on Vercel they are resized copies, so their pixels never
 // match exactly. The blocks still show each image's size and position, and
 // site.spec.ts checks that every image actually loads.
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { pages, loadAllImages } from './pages';
 
 for (const { name, path } of pages) {
