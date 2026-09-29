@@ -23,7 +23,7 @@ These are adapted from Alex's user-story guide.
 ## Sections
 
 1. **User need.** One or more stories in the form "As [person], I want [capability], so that [the decision or experience it changes]." The users on this site are Mika (the owner and editor), Alex (the maintainer), visitors (collectors, gallerists, curators, press), and Mika's or Alex's agent.
-2. **Part of the site.** Every affected page URL, file path and CMS collection. For example: `/work/cruise-control`, `src/content/works/cruise-control.yaml`, the Tina "Works" collection, and `tina/config.ts` or `src/content/config.ts` if the schema changes.
+2. **Part of the site.** Every affected page URL, file path and CMS collection. For example: `/work/cruise-control`, `src/content/works/cruise-control.yaml`, the CMS "Series" collection, and `tina/config.ts` and `src/content/schemas.ts` if the schema changes.
 3. **Why.** Two or three sentences giving the reason and who benefits, with the source and date of any claim that came from a conversation.
 4. **Do / Don't.** Guardrails.
    - Do: "keep Mika's wording and change only what fails check-mika-text".

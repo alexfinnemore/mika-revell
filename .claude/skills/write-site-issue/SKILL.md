@@ -11,7 +11,7 @@ description: Write a GitHub issue for mikarevell.com that Mika can read, an agen
 2. Read `taste/issue-writing.md`. It has the general rules, the section definitions and the research behind them.
 3. Read the part of the repo the request touches, so the "Part of the site" section names real files.
    - Content is in `src/content/`.
-   - Schemas are in `src/content/config.ts` and `tina/config.ts`.
+   - Schemas are in `src/content/schemas.ts` (the site) and `tina/config.ts` (the editor).
    - Pages are in `src/pages/`.
 4. Check that there's no existing issue for the same work: `gh issue list --search "<keywords>" --state all`.
 
