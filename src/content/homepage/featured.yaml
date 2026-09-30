@@ -26,19 +26,19 @@ images:
     artworkId: src/content/artworks/the-weight-is-a-gift
   # Softcore War (2023)
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_011b7f933c0a40ac982693cb94123c35-mv2.jpeg"
-    alt: "Softcore War - Installation I"
+    alt: "SOFTCORE WAR, Installation I"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-installation-i
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_682629a9adc9462aa712864de7dc85ea-mv2.jpeg"
-    alt: "Softcore War - Installation II"
+    alt: "SOFTCORE WAR, Installation II"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-installation-ii
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_83ded53edbe24aacb522b2e4fb11eceb-mv2.jpeg"
-    alt: "Softcore War - Installation III"
+    alt: "SOFTCORE WAR, Installation III"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-installation-iii
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_9e95d45413184e24a9dd15ff31a7f073-mv2.jpg"
-    alt: "Softcore War - Detail"
+    alt: "SOFTCORE WAR, Detail"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-detail
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_34f2a966f1cf45caa4beee61964cfe3e-mv2.png"

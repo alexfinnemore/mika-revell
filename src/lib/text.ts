@@ -31,9 +31,10 @@ export function summary(text: string, max = 160): string {
   const sentences = flat.match(/[^.?!]+[.?!]+["')\]]*(\s|$)/g) ?? [flat];
   let out = '';
   for (const s of sentences) {
-    if (out && (out + s).trim().length > max) break;
+    // Stop at a whole sentence, unless what we have is too short to describe the page.
+    if (out.trim().length >= 70 && (out + s).trim().length > max) break;
     out += s;
   }
   out = out.trim();
-  return out.length > max ? out.slice(0, max - 3).replace(/\s+\S*$/, '') + '...' : out;
+  return out.length > max ? out.slice(0, max - 3).replace(/\s+\S*$/, '').replace(/[,;:]$/, '') + '...' : out;
 }

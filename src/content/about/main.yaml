@@ -1,51 +1,31 @@
 heroImage: 'https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/About1.avif'
 heroImageAlt: Mika Revell portrait
 bio: >-
-  Mika Revell (b. 1985, Sydney, Australia) is a Chinese-American multimedia
-  artist. Her work delves into the complex relationship between symbols of power
-  and commodity, contrasting the ominous and alluring. Using pink pigments and
-  polished finishes, she investigates the processes of manufacturing and labor.
-  Her sculptures interrogate the global supply chain of resources and human
-  life. Revell explores how weapons and commodification shape our desires. Her
-  latest series addresses themes of power, war, and wealth both beautiful and
-  unsettling. She received her MFA in Sculpture from Central Saint Martins,
-  London, and international residencies in Riyadh, Tokyo, and Los Angeles.
+  Mika Revell (b. 1985, Sydney, Australia) is a Chinese-American multimedia artist. Her work sets symbols of power against objects of desire, contrasting the ominous and the alluring. Using pink pigments and polished finishes, she looks at how things are manufactured, who labors to make them, and how the global supply chain moves resources and human lives. Her sculptures, paintings, and installations ask how weapons and commodities shape what we want.
 
 
-  Her recent solo show, SOFTCORE WAR, explores the natural world wrapped in
-  fetishized commodity. Territorial, ideological, and environmental conflicts
-  surround us, yet we are desensitized, entertained, and addicted. Softcore War
-  examines this seemingly contradictory, but accepted, reality.
-
-
-  Using her signature pink as a panacea, Revell subverts symbols of violence
-  with pacifism and levity. She employs satire and absurdity to expose how we
-  accept our dystopian present. An inflatable bomb mocks the grotesque
-  celebration of destruction, while post-human sculptures depicting rapid
-  evolution hint at the effects of industry on the body.
-
-
-  Combining organic and manufactured materials, with symbols of violence and
-  enjoyment, Revell exposes the ways we package and accept a brutal and
-  competitive world.
+  Revell received her MA in Fine Art from Central Saint Martins, London, and has held residencies in Riyadh, Tokyo, and Los Angeles. Using her signature pink as a panacea, she employs satire and absurdity to expose the ways we package and accept a brutal and competitive world.
 secondImage: 'https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/About2.avif'
 secondImageAlt: Artist in studio
 education:
   - degree: Master's in Clinical Psychology
     institution: 'Pepperdine University, Los Angeles'
     year: 2023
-  - degree: Master's in Fine Art
+  - degree: MA Fine Art
     institution: 'Central Saint Martins, University of the Arts London'
     year: 2009
   - degree: Bachelor of Fine Arts
     institution: 'Otis College of Art and Design, Los Angeles'
     year: 2007
 soloExhibitions:
-  - title: SOFTCORE WAR
-    venue: 'Brutal. Gallery, Cape Town'
+  - title: Cruise Control
+    venue: 'E69, Berlin'
     year: 2024
-  - title: Power | Play
-    venue: 'JAX DISTRICT, Riyadh'
+  - title: SOFTCORE WAR
+    venue: 'BRUTAL. Gallery, Cape Town'
+    year: 2023
+  - title: Power Play
+    venue: 'JAX District, Riyadh'
     year: 2022
   - title: Unnatural Disasters
     venue: LA Art Show
@@ -55,7 +35,7 @@ soloExhibitions:
     year: 2015
 publicArtworks:
   - title: A Symphony of Circuit and Soil
-    venue: 'SFER IK Museum, Tulum'
+    venue: 'SFER IK Museion, Tulum'
     note: Art in Nature Award
     year: 2024
   - title: Midwest Wildflowers

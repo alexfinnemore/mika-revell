@@ -3,4 +3,5 @@ description: |
   A collection of oil paintings featuring portraits and figurative works.
 coverImage: https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/paintings--magnolia-portrait.jpg
 order: 7
+hidden: true
 artworks: []
