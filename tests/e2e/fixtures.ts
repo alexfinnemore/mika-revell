@@ -15,6 +15,18 @@ const TOKEN = process.env.VERCEL_OIDC_TOKEN;
 const HEADER = 'x-vercel-trusted-oidc-idp-token';
 const protectedOrigin = BASE_URL && TOKEN && BASE_URL.includes('.vercel.app') ? new URL(BASE_URL).origin : undefined;
 
+// Fail fast with a clear message if the token is missing or expired (it lasts
+// about 12 hours), rather than every test failing on Vercel's login page.
+if (BASE_URL?.includes('.vercel.app')) {
+  const response = await fetch(BASE_URL, { redirect: 'manual', headers: TOKEN ? { [HEADER]: TOKEN } : {} });
+  if (response.status !== 200) {
+    throw new Error(
+      `${BASE_URL} answered ${response.status}, so the Vercel login is in the way. ` +
+        'Run `vercel env pull .env --yes` to refresh VERCEL_OIDC_TOKEN, then run the tests again.',
+    );
+  }
+}
+
 export const test = base.extend({
   context: async ({ context }, use) => {
     if (protectedOrigin) {
