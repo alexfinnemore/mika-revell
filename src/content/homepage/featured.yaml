@@ -30,29 +30,29 @@ images:
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-installation-i
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_682629a9adc9462aa712864de7dc85ea-mv2.jpeg"
-    alt: "SOFTCORE WAR, Installation II"
+    alt: "Iron Lung"
     workSlug: src/content/works/softcore-war
-    artworkId: src/content/artworks/softcore-war-installation-ii
+    artworkId: src/content/artworks/iron-lung
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_83ded53edbe24aacb522b2e4fb11eceb-mv2.jpeg"
     alt: "SOFTCORE WAR, Installation III"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/softcore-war-installation-iii
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_9e95d45413184e24a9dd15ff31a7f073-mv2.jpg"
-    alt: "SOFTCORE WAR, Detail"
+    alt: "Consume Us"
     workSlug: src/content/works/softcore-war
-    artworkId: src/content/artworks/softcore-war-detail
+    artworkId: src/content/artworks/consume-us
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_34f2a966f1cf45caa4beee61964cfe3e-mv2.png"
-    alt: "Iron Lung"
+    alt: "Replicant"
     workSlug: src/content/works/softcore-war
-    artworkId: src/content/artworks/iron-lung
+    artworkId: src/content/artworks/replicant
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_4356f98f34f6478493e7d17e848bf1ac-mv2.jpeg"
     alt: "The Dreams in which I'm Dying"
     workSlug: src/content/works/softcore-war
     artworkId: src/content/artworks/the-dreams-in-which-im-dying
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_869e7c7033064fb58ceeaecc09159c76-mv2.jpeg"
-    alt: "Replicant"
+    alt: "SOFTCORE WAR, Installation II"
     workSlug: src/content/works/softcore-war
-    artworkId: src/content/artworks/replicant
+    artworkId: src/content/artworks/softcore-war-installation-ii
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_e74ae906157048a2b1c54611bcae9198-mv2.jpeg"
     alt: "Disarmed"
     workSlug: src/content/works/softcore-war
@@ -67,19 +67,19 @@ images:
     artworkId: src/content/artworks/under-the-skin
   # Power Play (2022) - poster campaign shots; link to the series (no matching artwork to anchor)
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_4be9ad68aebb4d139f54aabd04d961a1.jpg"
-    alt: "Power Play - poster campaign, Venice Biennale 2022"
+    alt: "Power Play: a wall of drawings and small paintings pinned up in a loose cluster"
     workSlug: src/content/works/power-play
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_61ac8e28986b40ef86d16a7cfd1ce816.jpg"
-    alt: "Power Play - poster campaign, Venice Biennale 2022"
+    alt: "Power Play: a pasted poster of a woman biting a pink tentacle among kawaii cartoon characters"
     workSlug: src/content/works/power-play
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_6d2a86f534d84fe585a3530ca3e12d31.jpg"
-    alt: "Power Play - poster campaign, Venice Biennale 2022"
+    alt: "Power Play: cardboard sculptures standing on stacks of newspapers in a gallery hung with paintings"
     workSlug: src/content/works/power-play
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_87509703535843b296518a328625b172-mv2_d_1297_1298_s_2.jpg"
-    alt: "Power Play - poster campaign, Venice Biennale 2022"
+    alt: "Power Play: a framed pink print of a couple embracing inside a dark circle"
     workSlug: src/content/works/power-play
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_dab0fefdc31d46a487e5fe8cd8bd2168-mv2.jpg"
-    alt: "Power Play - poster campaign, Venice Biennale 2022"
+    alt: "Power Play: a framed black and sepia print of a couple embracing"
     workSlug: src/content/works/power-play
   # Love Threats (2018)
   - image: "https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/2f20eb_5c29ae4a58354d0fb0e36a64fe67fdf0-mv2_d_1919_1919_s_2.jpg"

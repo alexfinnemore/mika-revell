@@ -2,7 +2,7 @@
 
 This folder holds the judgment an agent needs to write for mikarevell.com the way Mika would, and to write issues and docs for this repo the way Alex would. It lives in the repo so any agent that clones the site has it, including Mika's own Claude, with no outside service.
 
-**Status:** extracted from the site's own text on 2026-09-29. Mika has not yet reviewed it. Treat the beliefs as a strong draft until she confirms them.
+**Status:** extracted from the site's own text on 2026-09-29, then reviewed with Mika in an interview on 2026-10-01 (`mika-voice/review-2026-10-01.md`). Her answers override the extraction wherever they differ.
 
 ## What is here
 
@@ -67,4 +67,4 @@ This folder is the only copy. A Smaak package `mika-revell` was built first on 2
 - **When Mika corrects the voice** (for example, "I'd never say that"), change the belief or rule in the relevant file. Add the corrected sentence to `examples.md` as a new good-and-bad pair. Record the change in the commit message, with her words.
 - **When check-mika-text keeps failing on the same thing**, that pattern is a candidate for a new negative example or a Never-list entry.
 - **Don't edit `analysis-2026-09-29.md`.** If the package is extracted again, write a new dated analysis file.
-- **The next planned step** is a session with Mika. Read her the six beliefs in `philosophy.md`, ask where they're wrong, and update this README's status line when she has reviewed them.
+- **To review it again**, interview Mika the same way: ask about one belief at a time with concrete options from her own text, record her answers in a new dated `review-YYYY-MM-DD.md`, and update the files they change.

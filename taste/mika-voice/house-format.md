@@ -34,5 +34,5 @@ These are rules about format. The facts themselves live in `src/content/`.
 - Venues are styled as they brand themselves: "BRUTAL. Gallery", "JAX District", "SFER IK Museion", "E69".
 - The Central Saint Martins degree is "MA Fine Art" in the CV and "MA in Fine Art" in prose.
 
-- The artist is "Revell" in third-person texts, and "Mika Revell" at the first mention in a bio.
+- The artist is "Mika" in third-person texts (her choice, 2026-10-01), and "Mika Revell" at the first mention in a bio. "Revell" alone isn't used.
 - Her Instagram is @littlepinkpills.

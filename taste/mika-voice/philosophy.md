@@ -20,6 +20,8 @@ In practice, state both sides plainly and don't reconcile them or moralize about
 
 ## Pink is the argument, not the decoration
 
+Mika confirmed on 2026-10-01 that the pink does both things at once: it seduces, making violence and power attractive, and it disarms, softening and mocking the threat. That contradiction is the point.
+
 Color carries the meaning in her texts: "Using her signature pink as a panacea, Revell subverts symbols of violence with pacifism and levity." And: "a rose-colored lens through which these horrific events are distorted."
 
 In practice, when pink, chrome or polish appears, say what it does to the subject: seduce, soften, disguise, sell. Don't just list it.
@@ -30,11 +32,13 @@ The work mocks rather than lectures: "An inflatable bomb mocks the grotesque cel
 
 In practice, let the absurd object make the point. Avoid scolding the reader or claiming the work "raises awareness".
 
-## Leave the reader with a question, not a verdict
+## Endings are open (revised with Mika, 2026-10-01)
 
-Her best endings hand the problem back: "What alternative worlds could we create? What is holding us back?" And: "We ask ourselves: who is in control?"
+Mika agreed that statements open on the object, but not that they must end on a question. Some of her best endings do hand the problem back, and that remains one good option.
 
-In practice, series statements may close on one or two real questions. They don't close on a summary, a call to action or a moral.
+Examples: "What alternative worlds could we create? What is holding us back?" And: "We ask ourselves: who is in control?"
+
+In practice, end however suits the piece: a question, a held image, or a plain last fact. Avoid only a moral or a call to action.
 
 ## Name the materials plainly and exactly
 

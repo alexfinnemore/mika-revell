@@ -14,11 +14,11 @@ Before checking, read `taste/mika-voice/philosophy.md`, `behavior.md`, `output-c
 Run every check that applies to the text_type. Record each one as PASS, FAIL (quote the exact words and give a fix), or N/A.
 
 1. **Em dashes.** Any em dash fails. Fix it with a colon, a comma or a full sentence.
-2. **Person.** Only one of "Mika", "Revell" or "I" refers to the artist. A bio's first mention of "Mika Revell" is fine, and so is "we" meaning everyone. "We" meaning the artist fails.
-3. **Never list.** None of these words may appear: "delves", "deftly", "intriguing", "her artistry", "thought-provoking", "powerful". Also none of:
+2. **Person.** Only one of "Mika" or "I" refers to the artist; "Revell" alone fails (Mika's choice, 2026-10-01). A bio's first mention of "Mika Revell" is fine, and so is "we" meaning everyone. "We" meaning the artist fails.
+3. **Never list.** None of these may appear: "delves", "deftly" (Mika rules these out), "intriguing", "her artistry". Also none of:
    - "explores" or "looks at" as the opening verb of "This series ...";
-   - "interrogate" more than once;
    - rating words that tell the reader how to judge ("important", "compelling").
+   "Explores", "interrogate" and "powerful" are otherwise fine with Mika.
 4. **Stale time words.** "latest", "recent", "new" or "currently" fail unless they're tied to a date.
 5. **Fragments.** Every sentence has a subject and a verb. Questions are exempt.
 6. **Slogans and reframes.** Fail on:
@@ -28,7 +28,7 @@ Run every check that applies to the text_type. Record each one as PASS, FAIL (qu
 7. **Opening.** A series statement or writing page opens on an object, a scene or a question, not with "This series explores / looks at / examines".
 8. **Contradiction.** A series statement names its central opposition.
 9. **Pink has a job.** Where pink, chrome or polish appears, the text says what it does.
-10. **Close.** A series statement ends on a question or a held image, not on a summary or a moral.
+10. **Close.** A series statement doesn't end on a moral or a call to action. Any other ending is fine.
 11. **Materials.** The materials are named exactly. "Mixed media" fails when the materials are known.
 12. **Format.** It matches `house-format.md`: US spelling, the Oxford comma, the medium in sentence case, and a `Venue, City` subtitle.
 13. **Facts.** Every date, venue, award and material matches `src/content/`. A mismatch or an unsourced fact fails. Every quotation has a source, and every attribution to a thinker is correct.

@@ -23,7 +23,7 @@ This skill produces text Mika would recognize as hers, using only facts that exi
    - If a fact is missing or two sources disagree, stop and ask Mika. Don't pick one.
 3. Set the dials from `constraints.md`: text_type, person and length. If Mika's own draft is in first person, keep it first person.
 4. Draft to `output-contract.md` for the text type.
-   - For a series statement: open on an object, a scene or a question; name the contradiction; give the pink or polish a job; name the materials and the venue; close on a question or a held image.
+   - For a series statement: open on an object, a scene or a question; name the contradiction; give the pink or polish a job; name the materials and the venue; end however suits the piece.
    - When editing Mika's own draft, change as little as possible, and keep her phrases wherever they pass.
 5. Run the `check-mika-text` skill on the draft. Fix every fail, and list anything that needs Mika's decision.
 6. Return the result.

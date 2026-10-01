@@ -4,7 +4,7 @@ bio: >-
   Mika Revell (b. 1985, Sydney, Australia) is a Chinese-American multimedia artist. Her work sets symbols of power against objects of desire, contrasting the ominous and the alluring. Using pink pigments and polished finishes, she looks at how things are manufactured, who labors to make them, and how the global supply chain moves resources and human lives. Her sculptures, paintings, and installations ask how weapons and commodities shape what we want.
 
 
-  Revell received her MA in Fine Art from Central Saint Martins, London, and has held residencies in Riyadh, Tokyo, and Los Angeles. Using her signature pink as a panacea, she employs satire and absurdity to expose the ways we package and accept a brutal and competitive world.
+  Mika received her MA in Fine Art from Central Saint Martins, London, and has held residencies in Riyadh, Tokyo, Los Angeles, and Tulum, Mexico. Using her signature pink as a panacea, she employs satire and absurdity to expose the ways we package and accept a brutal and competitive world.
 secondImage: 'https://pbj78tn8g5vmaowa.public.blob.vercel-storage.com/About2.avif'
 secondImageAlt: Artist in studio
 education:
@@ -66,6 +66,9 @@ publicArtworks:
   - title: Johnnie Walker x Head in the Clouds
     venue: 'Rose Bowl, Los Angeles'
     year: 2021
-  - title: Architecture + Design Museum
-    venue: Los Angeles
+  - title: Passion
+    venue: 'Architecture + Design Museum, Los Angeles'
+    year: 2020
+  - title: China Town Nights
+    venue: 'Architecture + Design Museum, Los Angeles'
     year: 2020

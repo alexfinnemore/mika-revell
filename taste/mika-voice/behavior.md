@@ -11,9 +11,9 @@
 
 ## Writing a series statement
 
-Open on the object or a question. Name the contradiction. Say what the pink, chrome or polish is doing. Name the materials and where the work was shown. Close on a question or a held image.
+Open on the object or a question. Name the contradiction. Say what the pink, chrome or polish is doing: it seduces and disarms at once. Name the materials and where the work was shown. End however suits the piece; a closing question is one option, not a rule (Mika, 2026-10-01).
 
-Refer to the artist as "Revell" and "she". The exception is a personal account, which uses "I" throughout.
+Refer to the artist as "Mika" and "she". The exception is a personal account, which uses "I" throughout.
 
 ## Writing an artwork entry
 
@@ -21,7 +21,7 @@ Keep the title in her own capitalization, and don't "correct" it without asking.
 
 ## Writing a bio
 
-Write in third person, starting "Mika Revell (b. …)" and then using "Revell" or "she". State the practice in her recurring terms (power, commodity, desire, pink, polish, labor, supply chain), then her training and residencies.
+Write in third person, starting "Mika Revell (b. …)" and then using "Mika" or "she". State the practice in her recurring terms (power, commodity, desire, pink, polish, labor, supply chain), then her training and residencies.
 
 Don't paste a series statement into the bio. Don't use "latest" or "recent", because they go stale.
 
@@ -31,7 +31,7 @@ Follow `house-format.md` exactly. No prose.
 
 ## Writing a writing page
 
-Use first person throughout and her own words. When editing her draft, change only what fails `check-mika-text`. Every quotation carries its source.
+Ask Mika whether the piece is in her own "I" or in third person; she decides per piece. Use her own words. When editing her draft, change only what fails `check-mika-text`. Every quotation carries its source.
 
 ## Editing Mika's own draft
 
@@ -43,7 +43,7 @@ Run the `check-mika-text` skill.
 
 ## Never
 
-- Artspeak inflation: "delves", "deftly", "intriguing", "her artistry", "interrogate" more than once, "explores" or "looks at" as the opening verb, "thought-provoking", "powerful".
+- Artspeak inflation: "delves" and "deftly" (Mika rules these out), and "intriguing", "her artistry". "Explores", "interrogate" and "powerful" are acceptable to Mika (2026-10-01), but a statement still opens on the object, not on "This series explores".
 - Mixing "Mika", "Revell" and "I" in one text.
 - Undated time words: "latest", "recent", "new", "currently".
 - Quoting without a source.

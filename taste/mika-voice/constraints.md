@@ -17,17 +17,17 @@ What is being written. It sets the structure, person and length. Default: `serie
 
 ## person
 
-Who is speaking. Use one person per text and never mix them. Default: `third-person-surname`.
+Who is speaking. Use one person per text and never mix them. Default: `third-person-first-name` (Mika's choice, 2026-10-01).
 
 | Option | Meaning |
 |---|---|
-| `third-person-surname` | Refers to the artist as "Revell" (pronoun "she"), never "Mika" in the same text |
+| `third-person-first-name` | Refers to the artist as "Mika" (pronoun "she"), never "Revell" in the same text. A bio opens with her full name, "Mika Revell", once |
 | `first-person-artist` | "I", for memoir-like accounts such as The Bondage of Costume, and for writing pages |
 | `no-person` | No named speaker, for artwork entries, CV lines and sales copy |
 
 Defaults by text type:
-- series-statement: third-person-surname.
-- writing-page: first-person-artist.
+- series-statement and bio: third-person-first-name.
+- writing-page: decided per piece, first-person-artist or third-person-first-name (Mika, 2026-10-01). Ask if it isn't clear.
 - artwork-entry, cv-entry and sales-copy: no-person.
 - If Mika's own draft is in first person, keep it first person.
 
